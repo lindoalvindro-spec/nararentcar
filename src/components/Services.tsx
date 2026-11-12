@@ -6,55 +6,55 @@ export const Services: React.FC = () => {
     {
       icon: Key,
       title: 'Sewa Lepas Kunci',
-      desc: 'Privasi penuh berkendara bersama keluarga atau pasangan dengan armada tahun muda yang terawat dan steril.',
-      badge: 'Paling Populer',
+      desc: 'Privasi penuh berkendara bersama keluarga dengan armada tahun muda yang terawat, wangi, dan bebas asap rokok.',
+      badge: 'Paling Diminati',
     },
     {
       icon: UserCheck,
       title: 'Sewa Dengan Supir',
-      desc: 'Nikmati perjalanan tanpa lelah. Driver kami profesional, sopan, berlisensi, dan hafal jalur terbaik tanpa macet.',
+      desc: 'Perjalanan bebas lelah dan tepat waktu. Supir kami ramah, berlisensi resmi, dan menguasai rute jalan di kota maupun luar kota.',
       badge: 'Nyaman & Aman',
     },
     {
       icon: Plane,
       title: 'Antar-Jemput Bandara',
-      desc: 'Layanan drop-off atau pick-up di Bandara Soekarno-Hatta & Halim Perdanakusuma tepat waktu 24 jam nonstop.',
-      badge: 'Tepat Waktu',
+      desc: 'Layanan jemput dan antar di Bandara Soekarno-Hatta (CGK) dan Halim Perdanakusuma (HLP) dengan konfirmasi jadwal yang presisi.',
+      badge: 'Jadwal Siaga',
     },
     {
       icon: HeartHandshake,
-      title: 'Wedding Car & VIP',
-      desc: 'Sewa mobil pengantin mewah (Alphard, Camry, Fortuner) lengkap dengan dekorasi pita bunga dan supir berbatik rapi.',
-      badge: 'Eksklusif',
+      title: 'Mobil Pernikahan / VIP',
+      desc: 'Unit kendaraan mewah seperti Toyota Alphard dan Camry untuk kebutuhan acara sakral pernikahan atau tamu kehormatan.',
+      badge: 'Unit Khusus',
     },
     {
       icon: Bus,
-      title: 'Wisata & Rombongan',
-      desc: 'Unit minibus HiAce Premio dan Elf Long berkapasitas hingga 12-19 penumpang untuk liburan keluarga besar atau kantor.',
-      badge: 'Kapasitas Besar',
+      title: 'Sewa Wisata & Rombongan',
+      desc: 'Tersedia Toyota HiAce Premio berkapasitas hingga 12 penumpang untuk liburan rombongan kantor atau keluarga besar.',
+      badge: 'Kapasitas Luas',
     },
     {
       icon: Building2,
-      title: 'Rental Korporat / Bulanan',
-      desc: 'Paket sewa jangka panjang untuk operasional perusahaan dengan invoice resmi, PPh 23, serta mobil pengganti jika servis.',
-      badge: 'Hemat Biaya',
+      title: 'Rental Korporat & Bulanan',
+      desc: 'Solusi operasional kendaraan instansi perusahaan dengan kelengkapan invoice resmi, faktur PPh 23, serta unit pengganti otomatis.',
+      badge: 'Faktur Resmi',
     },
   ];
 
   return (
-    <section id="layanan" className="py-16 border-t border-slate-900 bg-slate-950/40">
+    <section id="layanan" className="py-16 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
-            Layanan Unggulan
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-md border border-emerald-200">
+            Pilihan Layanan
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Solusi Sewa Mobil untuk Setiap Kebutuhan Anda
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Paket Sewa Mobil Sesuai Kebutuhan Perjalanan
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
-            Apapun rencana perjalanan Anda, kami siap menyediakan solusi armada dan layanan terbaik dengan standar keselamatan tertinggi.
+          <p className="text-slate-600 text-sm sm:text-base">
+            Kami menyediakan solusi armada fleksibel dengan jaminan kondisi unit selalu bersih dan prima.
           </p>
         </div>
 
@@ -65,21 +65,21 @@ export const Services: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="rounded-3xl bg-slate-900/90 border border-slate-800 hover:border-brand-500/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/10 flex flex-col justify-between group"
+                className="rounded-2xl bg-slate-50 border border-slate-200 p-6 flex flex-col justify-between hover:border-slate-300 transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-slate-950 transition-all duration-300">
-                      <Icon className="w-6 h-6 stroke-[2]" />
+                    <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-emerald-700 shadow-sm">
+                      <Icon className="w-5 h-5 stroke-[2]" />
                     </div>
-                    <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                    <span className="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-white text-slate-700 border border-slate-200">
                       {srv.badge}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-300 transition-colors">
+                  <h3 className="text-base font-bold text-slate-900 mb-2">
                     {srv.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {srv.desc}
                   </p>
                 </div>

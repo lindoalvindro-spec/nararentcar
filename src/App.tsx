@@ -6,7 +6,7 @@ import { FleetShowcase } from './components/FleetShowcase';
 import { CarDetailModal } from './components/CarDetailModal';
 import { Services } from './components/Services';
 import { RentalRequirements } from './components/RentalRequirements';
-import { Testimonials } from './components/Testimonials';
+import { QualityAssurance } from './components/QualityAssurance';
 import { FAQ } from './components/FAQ';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
@@ -23,7 +23,7 @@ export function App() {
 
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
-  // Reactive filtering logic
+  // Reactive filtering
   const filteredVehicles = useMemo(() => {
     return VEHICLES_DATA.filter((car) => {
       // Category filter
@@ -63,8 +63,8 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-brand-500 selection:text-slate-950">
-      {/* Top Sticky Navigation */}
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-emerald-600 selection:text-white">
+      {/* Top Navigation */}
       <Navbar />
 
       <main className="flex-1">
@@ -72,7 +72,7 @@ export function App() {
         <Hero />
 
         {/* Fleet & Filter Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 pt-8">
           <QuickFilter
             filters={filters}
             onFilterChange={setFilters}
@@ -86,23 +86,23 @@ export function App() {
           />
         </div>
 
-        {/* Services & Value Proposition */}
+        {/* Service Packages */}
         <Services />
 
-        {/* Requirements & How-to-book */}
+        {/* Requirements & 4-Step Process */}
         <RentalRequirements />
 
-        {/* Social Proof / Testimonials */}
-        <Testimonials />
+        {/* Quality Assurance & Guarantees (Anti-slop R-18 & R-36 compliant) */}
+        <QualityAssurance />
 
-        {/* FAQ Accordion */}
+        {/* Accessible FAQ Accordion */}
         <FAQ />
       </main>
 
-      {/* Footer */}
+      {/* Corporate Footer */}
       <Footer />
 
-      {/* Floating Support Button */}
+      {/* Floating Action Button */}
       <FloatingWhatsApp />
 
       {/* Modal Dialog for Car Detail & Price Estimator */}

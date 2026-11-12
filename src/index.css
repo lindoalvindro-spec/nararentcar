@@ -7,22 +7,51 @@
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
+
   body {
     overflow-x: hidden;
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+
+  /* Anti-slop R-39: Every enabled interactive element shows cursor: pointer */
+  a[href],
+  button,
+  summary,
+  select,
+  label[for],
+  input[type="checkbox"],
+  input[type="radio"],
+  [role="button"],
+  [role="tab"] {
+    cursor: pointer;
+  }
+
+  /* Disabled controls show not-allowed */
+  button:disabled,
+  input:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Anti-slop R-32: Visible keyboard focus indicator */
+  :focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
   }
 }
 
-/* Custom scrollbar */
+/* Subtle clean scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b1120;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }

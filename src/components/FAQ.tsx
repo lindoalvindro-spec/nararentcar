@@ -11,19 +11,19 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-16">
+    <section id="faq" className="py-16 bg-slate-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-12 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
-            Pertanyaan Umum
+        <div className="text-center mb-12 space-y-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-md border border-emerald-200">
+            Pusat Informasi
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Frequently Asked Questions (FAQ)
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Tanya Jawab Seputar Layanan Sewa (FAQ)
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
-            Jawaban lengkap seputar sistem sewa, jaminan deposit, antar-jemput, dan ketentuan perjalanan.
+          <p className="text-slate-600 text-sm sm:text-base">
+            Jawaban lengkap seputar sistem pemesanan, ketentuan lepas kunci, deposit, dan fasilitas.
           </p>
         </div>
 
@@ -34,22 +34,22 @@ export const FAQ: React.FC = () => {
             return (
               <div
                 key={faq.id}
-                className="rounded-2xl border border-slate-800 bg-slate-900/80 overflow-hidden transition-all duration-200 hover:border-slate-700"
+                className="rounded-xl border border-slate-200 bg-white overflow-hidden transition-colors"
               >
                 <button
                   type="button"
                   onClick={() => toggleFAQ(faq.id)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500/50"
+                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-emerald-600"
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
                 >
-                  <span className="text-sm sm:text-base font-bold text-white flex items-center gap-3">
-                    <HelpCircle className="w-4 h-4 text-brand-400 flex-shrink-0" />
+                  <span className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-3">
+                    <HelpCircle className="w-4 h-4 text-emerald-700 flex-shrink-0" />
                     <span>{faq.question}</span>
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 transition-transform duration-300 flex-shrink-0 ${
-                      isOpen ? 'transform rotate-180 text-brand-400' : ''
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 flex-shrink-0 ${
+                      isOpen ? 'transform rotate-180 text-emerald-700' : ''
                     }`}
                   />
                 </button>
@@ -57,7 +57,7 @@ export const FAQ: React.FC = () => {
                 {isOpen && (
                   <div
                     id={`faq-answer-${faq.id}`}
-                    className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60"
+                    className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100"
                   >
                     {faq.answer}
                   </div>
@@ -67,20 +67,20 @@ export const FAQ: React.FC = () => {
           })}
         </div>
 
-        {/* Still have questions CTA */}
-        <div className="mt-10 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        {/* Contact Support CTA Box */}
+        <div className="mt-10 rounded-2xl bg-white border border-slate-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm text-center sm:text-left">
           <div>
-            <h4 className="text-sm font-bold text-white">Masih Memiliki Pertanyaan Lain?</h4>
-            <p className="text-xs text-slate-400 mt-1">Tim Customer Support kami standby 24 jam untuk menjawab pertanyaan Anda.</p>
+            <h3 className="text-sm font-bold text-slate-900">Pertanyaan Anda Belum Terjawab?</h3>
+            <p className="text-xs text-slate-600 mt-1">Tim Customer Service kami siap melayani dan menjawab pertanyaan Anda via WhatsApp.</p>
           </div>
           <a
-            href={buildWhatsAppSupportUrl('Pertanyaan Khusus Seputar Sewa')}
+            href={buildWhatsAppSupportUrl('Pertanyaan Khusus Seputar Sewa Mobil')}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-colors shadow"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-sm transition-colors"
           >
-            <MessageSquare className="w-4 h-4 text-brand-400" />
-            <span>Chat CS via WhatsApp</span>
+            <MessageSquare className="w-4 h-4" />
+            <span>Tanya Admin via WhatsApp</span>
           </a>
         </div>
 

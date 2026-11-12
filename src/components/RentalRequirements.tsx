@@ -6,81 +6,81 @@ export const RentalRequirements: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'domisili' | 'wisatawan' | 'perusahaan'>('domisili');
 
   const tabs = [
-    { id: 'domisili', label: 'Warga Lokal / Domisili', icon: User },
+    { id: 'domisili', label: 'Warga Domisili / Lokal', icon: User },
     { id: 'wisatawan', label: 'Wisatawan / Tamu Luar Kota', icon: Plane },
-    { id: 'perusahaan', label: 'Instansi / Perusahaan', icon: Building },
+    { id: 'perusahaan', label: 'Instansi / Korporasi', icon: Building },
   ];
 
   const requirementsData = {
     domisili: [
-      'E-KTP asli penyewa & penjamin (keluarga/kerabat se-KK)',
-      'SIM A aktif yang masih berlaku',
-      'Bukti tempat tinggal domisili (PBB, tagihan listrik, atau kartu keluarga)',
-      'Akun media sosial aktif (Instagram / LinkedIn / Facebook)',
-      'Deposit jaminan (dikembalikan 100% setelah unit kembali aman)',
+      'E-KTP asli penyewa dan penjamin keluarga',
+      'Surat Izin Mengemudi (SIM A) aktif dan sah',
+      'Bukti tempat tinggal domisili (PBB, rekening listrik, atau Kartu Keluarga)',
+      'Akun media sosial aktif untuk verifikasi identitas',
+      'Deposit jaminan (dikembalikan utuh 100% setelah unit kembali dalam kondisi baik)',
     ],
     wisatawan: [
       'E-KTP asli penyewa',
-      'SIM A aktif yang masih berlaku',
-      'Tiket pesawat / kereta api Pulang-Pergi (PP)',
-      'Bukti konfirmasi reservasi hotel / penginapan selama di kota',
+      'Surat Izin Mengemudi (SIM A) aktif',
+      'Tiket pesawat atau kereta api Pulang Pergi (PP)',
+      'Bukti konfirmasi reservasi hotel atau penginapan selama kunjungan',
       'Akun media sosial aktif',
       'Deposit jaminan sewa lepas kunci',
     ],
     perusahaan: [
-      'NPWP & SIUP / NIB Perusahaan yang masih berlaku',
-      'KTP & SIM A pengemudi yang ditunjuk',
-      'Surat Keterangan Kerja atau Surat Tugas dari perusahaan',
-      'Purchase Order (PO) resmi bertanda tangan pejabat berwenang',
-      'Bebas uang jaminan deposit untuk corporate partner terdaftar',
+      'NPWP dan NIB / SIUP Perusahaan yang masih berlaku',
+      'KTP dan SIM A pengemudi yang ditugaskan',
+      'Surat Tugas atau Keterangan Kerja dari pimpinan instansi',
+      'Purchase Order (PO) resmi dari instansi',
+      'Bebas uang deposit jaminan untuk mitra korporat terdaftar',
     ],
   };
 
   const steps = [
     {
-      num: '01',
-      title: 'Pilih Mobil',
-      desc: 'Tentukan unit mobil dan durasi hari sewa yang sesuai kebutuhan Anda.',
+      num: '1',
+      title: 'Pilih Unit Mobil',
+      desc: 'Tentukan model kendaraan, opsi transmisi, dan durasi hari sewa yang Anda perlukan.',
     },
     {
-      num: '02',
-      title: 'Verifikasi WA',
-      desc: 'Kirim foto dokumen persyaratan ke WhatsApp admin kami untuk verifikasi cepat (kurang dari 15 menit).',
+      num: '2',
+      title: 'Kirim Dokumen via WA',
+      desc: 'Kirimkan foto dokumen persyaratan melalui WhatsApp untuk verifikasi kilat admin.',
     },
     {
-      num: '03',
-      title: 'Antar Unit',
-      desc: 'Mobil diantar langsung ke rumah, hotel, atau bandara sesuai jadwal yang Anda tentukan.',
+      num: '3',
+      title: 'Serah Terima Mobil',
+      desc: 'Mobil diantar ke alamat rumah, bandara, atau stasiun sesuai jadwal yang Anda sepakati.',
     },
     {
-      num: '04',
-      title: 'Mulai Melaju',
-      desc: 'Cek fisik kendaraan, tanda tangan serah terima, dan nikmati perjalanan menyenangkan Anda.',
+      num: '4',
+      title: 'Selesai & Refund Deposit',
+      desc: 'Setelah masa sewa berakhir dan unit dicek bersama, deposit langsung dikembalikan utuh.',
     },
   ];
 
   return (
-    <section id="syarat" className="py-16">
+    <section id="syarat" className="py-16 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
-            Transparan & Mudah
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-md border border-emerald-200">
+            Panduan Transparan
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Syarat Sewa Ringan & Alur Pemesanan
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Persyaratan Sewa & Alur Pemesanan
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
-            Proses verifikasi dokumen cepat, aman, dan tanpa birokrasi berbelit. Kami menjamin privasi data Anda 100% terjaga.
+          <p className="text-slate-600 text-sm sm:text-base">
+            Proses verifikasi dokumen cepat, aman, dan tanpa syarat yang menyulitkan.
           </p>
         </div>
 
-        {/* Requirements Box with Tabs */}
-        <div className="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl mb-16">
+        {/* Tabbed Requirements Box */}
+        <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm mb-16">
           
-          {/* Tabs header */}
-          <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-slate-950 border border-slate-800 mb-6">
+          {/* Tab buttons */}
+          <div className="flex flex-wrap gap-2 p-1 rounded-xl bg-slate-100 border border-slate-200 mb-6">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -89,13 +89,13 @@ export const RentalRequirements: React.FC = () => {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                  className={`flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${
                     isActive
-                      ? 'bg-brand-500 text-slate-950 shadow-md shadow-brand-500/20 font-bold'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                      ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-4 h-4 text-emerald-600" />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -104,34 +104,34 @@ export const RentalRequirements: React.FC = () => {
 
           {/* Checklist content */}
           <div className="space-y-4">
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <FileCheck className="w-5 h-5 text-brand-400" />
-              <span>Dokumen Persyaratan yang Diperlukan:</span>
+            <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
+              <FileCheck className="w-4 h-4 text-emerald-700" />
+              <span>Dokumen yang Perlu Disiapkan:</span>
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               {requirementsData[activeTab].map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800/80"
+                  className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-brand-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-xs text-slate-700 font-medium leading-relaxed">
                     {item}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-800/80 mt-6">
-              <span className="text-xs text-slate-400">
-                Punya pertanyaan mengenai kelengkapan dokumen Anda?
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100 mt-6 text-xs">
+              <span className="text-slate-500">
+                Memiliki dokumen yang belum lengkap atau kasus khusus?
               </span>
               <a
-                href={buildWhatsAppSupportUrl('Pertanyaan Syarat Sewa')}
+                href={buildWhatsAppSupportUrl('Konsultasi Dokumen Persyaratan Sewa')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 underline underline-offset-4"
+                className="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-800"
               >
                 <span>Tanya Admin Langsung</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -142,10 +142,10 @@ export const RentalRequirements: React.FC = () => {
 
         </div>
 
-        {/* Step-by-Step Flow */}
+        {/* 4 Steps Section */}
         <div className="text-center mb-8">
-          <h3 className="text-xl sm:text-2xl font-bold text-white">
-            4 Langkah Mudah Sewa Mobil
+          <h3 className="text-xl font-bold text-slate-900">
+            4 Langkah Praktis Menyewa Unit
           </h3>
         </div>
 
@@ -153,15 +153,15 @@ export const RentalRequirements: React.FC = () => {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="relative p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 text-left space-y-3"
+              className="p-6 rounded-2xl bg-white border border-slate-200 text-left space-y-2 shadow-sm"
             >
-              <div className="text-3xl font-black text-brand-400/40 tracking-tight">
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
                 {step.num}
               </div>
-              <h4 className="text-base font-bold text-white">
+              <h4 className="text-base font-bold text-slate-900">
                 {step.title}
               </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {step.desc}
               </p>
             </div>
