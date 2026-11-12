@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CarCard } from './CarCard';
 import { Vehicle } from '../types/rental';
 import { CarFront, RotateCcw } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP);
 
 interface FleetShowcaseProps {
   vehicles: Vehicle[];
@@ -14,8 +18,23 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
   onSelectDetail,
   onResetFilter,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (vehicles.length > 0) {
+        gsap.fromTo(
+          '.car-card-item',
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, stagger: 0.06, duration: 0.4, ease: 'power2.out' }
+        );
+      }
+    },
+    { dependencies: [vehicles], scope: containerRef }
+  );
+
   return (
-    <section id="armada" className="pt-4 pb-16">
+    <section id="armada" className="pt-4 pb-16" ref={containerRef}>
       
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">

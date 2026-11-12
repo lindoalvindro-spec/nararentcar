@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ArrowRight, CheckCircle2, ShieldCheck, MapPin, Calendar, Car } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 
-export const Hero: React.FC = () => {
+gsap.registerPlugin(useGSAP);
+
+interface HeroProps {
+  onQuickSearchSelect?: (category: string, serviceType: string) => void;
+}
+
+export const Hero: React.FC<HeroProps> = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      tl.fromTo('.hero-badge', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 })
+        .fromTo('.hero-title', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.2')
+        .fromTo('.hero-desc', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 }, '-=0.2')
+        .fromTo('.hero-pills > div', { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.35 }, '-=0.1')
+        .fromTo('.hero-cta', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35 }, '-=0.15')
+        .fromTo('.hero-widget', { opacity: 0, x: 25 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.5');
+    },
+    { scope: heroRef }
+  );
+
   return (
-    <section className="bg-white border-b border-slate-200 pt-10 pb-16 lg:pt-16 lg:pb-20">
+    <section ref={heroRef} className="bg-white border-b border-slate-200 pt-10 pb-16 lg:pt-16 lg:pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -12,23 +36,23 @@ export const Hero: React.FC = () => {
           {/* Left Column: Headlines & Core Value */}
           <div className="lg:col-span-7 space-y-6 text-left">
             
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+            <div className="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
               <span>Armada Terawat Bengkel Resmi & Asuransi Perjalanan</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Sewa Mobil Aman & Nyaman, <br />
               <span className="text-emerald-700">Lepas Kunci</span> atau{' '}
               <span className="text-slate-900">Dengan Supir</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
+            <p className="hero-desc text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
               Solusi transportasi andal untuk perjalanan dinas kantor, liburan keluarga, maupun antar-jemput bandara. Unit steril bebas asap rokok, STNK aktif, dan didukung layanan darurat 24 jam.
             </p>
 
-            {/* Verifiable commitments (No fake statistics per R-17/R-36) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            {/* Verifiable commitments */}
+            <div className="hero-pills grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                 <span className="text-xs font-semibold text-slate-800">Unit Tahun Muda (2024)</span>
@@ -44,7 +68,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
+            <div className="hero-cta flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
               <a
                 href="#armada"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition-colors"
@@ -66,7 +90,7 @@ export const Hero: React.FC = () => {
 
           {/* Right Column: Practical Quick Action Box */}
           <div className="lg:col-span-5">
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-6 sm:p-7 space-y-5">
+            <div className="hero-widget bg-white rounded-2xl border border-slate-200 shadow-xl p-6 sm:p-7 space-y-5">
               
               <div className="border-b border-slate-100 pb-4">
                 <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">

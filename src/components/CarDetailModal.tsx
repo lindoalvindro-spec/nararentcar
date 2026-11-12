@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, Check, Calendar, Users, Briefcase, Cog, Fuel, Shield, MessageCircle } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { Vehicle } from '../types/rental';
 import { formatCurrencyIDR } from '../utils/formatters';
 import { buildWhatsAppBookingUrl } from '../utils/whatsapp';
+
+gsap.registerPlugin(useGSAP);
 
 interface CarDetailModalProps {
   vehicle: Vehicle | null;
@@ -14,6 +18,28 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({ vehicle, onClose
   const [durationDays, setDurationDays] = useState<number>(1);
   const [startDate, setStartDate] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+
+  // Smooth GSAP modal open animation
+  useGSAP(
+    () => {
+      if (vehicle && modalRef.current && backdropRef.current) {
+        gsap.fromTo(
+          backdropRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.25, ease: 'power2.out' }
+        );
+        gsap.fromTo(
+          modalRef.current,
+          { scale: 0.94, opacity: 0, y: 15 },
+          { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' }
+        );
+      }
+    },
+    { dependencies: [vehicle] }
+  );
 
   // Handle ESC key press per Anti-slop R-32
   useEffect(() => {
@@ -51,14 +77,18 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({ vehicle, onClose
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-900/60 backdrop-blur-sm"
+      ref={backdropRef}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-900/60 backdrop-blur-xs"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-vehicle-title"
     >
       
       {/* Modal Dialog Window */}
-      <div className="relative w-full max-w-3xl bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div
+        ref={modalRef}
+        className="relative w-full max-w-3xl bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+      >
         
         {/* Modal Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50 sticky top-0 z-10">

@@ -12,8 +12,6 @@ interface CarCardProps {
 export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => {
   const [selectedService, setSelectedService] = useState<'lepas-kunci' | 'dengan-supir'>('lepas-kunci');
 
-  const currentPrice = selectedService === 'lepas-kunci' ? vehicle.priceWithoutDriver : vehicle.priceWithDriver;
-
   const categoryNames: Record<string, string> = {
     'city-car': 'City Car',
     'mpv': 'Family MPV',
@@ -28,7 +26,7 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
   });
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-all shadow-sm hover:shadow-md flex flex-col overflow-hidden">
+    <div className="car-card-item bg-white rounded-2xl border border-slate-200 hover:border-slate-300 transition-all shadow-xs hover:shadow-md flex flex-col overflow-hidden">
       
       {/* Vehicle Image Banner */}
       <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
@@ -36,15 +34,15 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
           src={vehicle.image}
           alt={`Mobil ${vehicle.name}`}
           loading="lazy"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-103"
         />
 
         {/* Category & Year Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-          <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-white/90 backdrop-blur-sm text-slate-800 border border-slate-200 shadow-sm">
+          <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-white/95 backdrop-blur-sm text-slate-800 border border-slate-200 shadow-xs">
             {categoryNames[vehicle.category] || vehicle.category}
           </span>
-          <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-emerald-600 text-white shadow-sm">
+          <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-emerald-600 text-white shadow-xs">
             Tahun {vehicle.year}
           </span>
         </div>
@@ -55,7 +53,7 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
         
         {/* Title & Engine Spec */}
         <div>
-          <h3 className="text-lg font-bold text-slate-900">
+          <h3 className="text-lg font-bold text-slate-900 leading-snug">
             {vehicle.name}
           </h3>
           <p className="text-xs text-slate-500 mt-0.5">Kapasitas Mesin: {vehicle.engineCapacity}</p>
@@ -81,76 +79,81 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
           </div>
         </div>
 
-        {/* Service Type Switcher */}
-        <div>
-          <span className="text-xs text-slate-500 font-medium block mb-1.5">Pilihan Opsi Sewa:</span>
-          <div className="flex p-1 rounded-xl bg-slate-100 border border-slate-200 text-xs">
+        {/* Dual Price Comparison Matrix */}
+        <div className="pt-2 border-t border-slate-100">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">
+              Pilihan Tarif Sewa Harian:
+            </span>
+            <span className="text-[10px] text-emerald-700 font-medium">Klik untuk memilih</span>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            
+            {/* Opsi Lepas Kunci */}
             <button
               type="button"
               onClick={() => setSelectedService('lepas-kunci')}
-              className={`flex-1 py-1.5 rounded-lg font-semibold transition-colors ${
+              className={`p-2.5 rounded-xl text-left border transition-all ${
                 selectedService === 'lepas-kunci'
-                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-emerald-50/80 border-emerald-500 ring-1 ring-emerald-500 shadow-xs'
+                  : 'bg-slate-50 border-slate-200 hover:border-slate-300'
               }`}
             >
-              Lepas Kunci
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] font-bold text-slate-600 uppercase">Lepas Kunci</span>
+                {selectedService === 'lepas-kunci' && (
+                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                )}
+              </div>
+              <div className="text-sm font-extrabold text-slate-900">
+                {formatCurrencyIDR(vehicle.priceWithoutDriver)}
+              </div>
+              <span className="text-[10px] text-slate-500">/ hari</span>
             </button>
+
+            {/* Opsi Dengan Supir */}
             <button
               type="button"
               onClick={() => setSelectedService('dengan-supir')}
-              className={`flex-1 py-1.5 rounded-lg font-semibold transition-colors ${
+              className={`p-2.5 rounded-xl text-left border transition-all ${
                 selectedService === 'dengan-supir'
-                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-emerald-50/80 border-emerald-500 ring-1 ring-emerald-500 shadow-xs'
+                  : 'bg-slate-50 border-slate-200 hover:border-slate-300'
               }`}
             >
-              Dengan Supir
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] font-bold text-slate-600 uppercase">+ Supir</span>
+                {selectedService === 'dengan-supir' && (
+                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                )}
+              </div>
+              <div className="text-sm font-extrabold text-slate-900">
+                {formatCurrencyIDR(vehicle.priceWithDriver)}
+              </div>
+              <span className="text-[10px] text-slate-500">/ hari</span>
             </button>
-          </div>
-        </div>
 
-        {/* Pricing Summary */}
-        <div className="pt-2 border-t border-slate-100 flex items-baseline justify-between">
-          <div>
-            <span className="text-[11px] text-slate-500 block">
-              Tarif ({selectedService === 'lepas-kunci' ? 'Lepas Kunci' : 'Plus Supir'})
-            </span>
-            <div className="flex items-baseline gap-1">
-              <span className="text-xl font-extrabold text-slate-900">
-                {formatCurrencyIDR(currentPrice)}
-              </span>
-              <span className="text-xs text-slate-500">/ hari</span>
-            </div>
           </div>
-
-          <button
-            type="button"
-            onClick={() => onSelectDetail(vehicle)}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:text-emerald-800 p-1"
-          >
-            <Info className="w-3.5 h-3.5" />
-            <span>Kalkulator</span>
-          </button>
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-2 pt-1">
+        <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
           <button
             type="button"
             onClick={() => onSelectDetail(vehicle)}
-            className="w-full py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs border border-slate-300 transition-colors text-center"
+            className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs border border-slate-300 transition-colors text-center"
           >
-            Rincian Unit
+            <Info className="w-3.5 h-3.5 text-slate-600" />
+            <span>Kalkulator</span>
           </button>
           <a
             href={whatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-colors text-center"
+            className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-colors text-center"
           >
             <MessageCircle className="w-3.5 h-3.5 fill-white stroke-white" />
-            <span>Pesan (WA)</span>
+            <span>Pesan ({selectedService === 'lepas-kunci' ? 'Lepas Kunci' : 'Supir'})</span>
           </a>
         </div>
 
