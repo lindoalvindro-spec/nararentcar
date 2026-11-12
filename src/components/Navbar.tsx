@@ -15,7 +15,7 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
@@ -29,11 +29,11 @@ export const Navbar: React.FC = () => {
               <Car className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <span className="text-xl font-bold tracking-tight text-slate-900 block leading-tight">
+              <span className="text-xl font-extrabold tracking-tight text-slate-950 block leading-tight font-display">
                 {COMPANY_CONFIG.name}
               </span>
-              <span className="hidden sm:flex items-center gap-1 text-xs text-emerald-700 font-semibold">
-                <ShieldCheck className="w-3.5 h-3.5" /> Unit Resmi & Bergaransi
+              <span className="hidden sm:flex items-center gap-1 text-[11px] text-emerald-700 font-semibold">
+                <ShieldCheck className="w-3.5 h-3.5" /> Unit Terawat & Bergaransi
               </span>
             </div>
           </a>
@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-semibold text-slate-600 hover:text-emerald-700 transition-colors py-1"
+                className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-emerald-700 transition-colors py-1"
               >
                 {link.label}
               </a>
@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
               href={buildWhatsAppSupportUrl('Konsultasi Sewa Mobil')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold font-display text-xs sm:text-sm transition-colors shadow-xs"
               aria-label="Hubungi Customer Service via WhatsApp"
             >
               <Phone className="w-4 h-4 stroke-[2.2]" />
@@ -89,7 +89,7 @@ export const Navbar: React.FC = () => {
               key={link.label}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-800 hover:text-emerald-700 hover:bg-slate-50 transition-colors"
+              className="block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:text-emerald-700 hover:bg-slate-50 transition-colors"
             >
               {link.label}
             </a>
@@ -99,7 +99,7 @@ export const Navbar: React.FC = () => {
               href={buildWhatsAppSupportUrl('Konsultasi Sewa Mobil')}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold font-display text-sm shadow-xs"
             >
               <Phone className="w-4 h-4 stroke-[2.2]" />
               <span>Hubungi CS via WhatsApp</span>

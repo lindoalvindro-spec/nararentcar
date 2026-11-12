@@ -13,19 +13,16 @@ export default {
           200: '#a7f3d0',
           300: '#6ee7b7',
           400: '#34d399',
-          500: '#10b981', // Emerald primary accent
-          600: '#059669',
+          500: '#10b981',
+          600: '#059669', // Emerald primary
           700: '#047857',
           800: '#065f46',
           900: '#064e3b',
         },
-        slate: {
-          850: '#151f32',
-          950: '#0b1120',
-        }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
       }
     },
   },

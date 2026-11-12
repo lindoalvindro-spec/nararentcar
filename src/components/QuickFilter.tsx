@@ -64,8 +64,8 @@ export const QuickFilter: React.FC<QuickFilterProps> = ({
             type="text"
             value={filters.searchQuery}
             onChange={handleSearchChange}
-            placeholder="Cari model mobil (contoh: Innova Zenix, Avanza, Brio)..."
-            className="w-full pl-10 pr-12 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all"
+            placeholder="Cari mobil (contoh: Innova Zenix, Avanza, Brio)..."
+            className="w-full pl-10 pr-12 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all font-sans"
           />
           {filters.searchQuery && (
             <button
@@ -81,7 +81,7 @@ export const QuickFilter: React.FC<QuickFilterProps> = ({
         <div className="flex items-center justify-between sm:justify-end gap-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-xs text-slate-700 font-semibold border border-slate-200">
             <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Tersedia: <strong>{totalResults} Unit Mobil</strong></span>
+            <span>Tersedia: <strong className="text-slate-900">{totalResults} Unit Mobil</strong></span>
           </div>
 
           {isFiltered && (
@@ -111,9 +111,9 @@ export const QuickFilter: React.FC<QuickFilterProps> = ({
                 key={cat.value}
                 type="button"
                 onClick={() => handleCategoryClick(cat.value)}
-                className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors ${
+                className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
                   isActive
-                    ? 'bg-emerald-600 text-white shadow-sm'
+                    ? 'bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-600'
                     : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
                 }`}
               >
@@ -136,9 +136,9 @@ export const QuickFilter: React.FC<QuickFilterProps> = ({
               key={t.value}
               type="button"
               onClick={() => handleTransmissionClick(t.value)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 isActive
-                  ? 'bg-slate-900 text-white font-bold'
+                  ? 'bg-slate-900 text-white shadow-sm'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
               }`}
             >

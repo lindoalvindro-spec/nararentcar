@@ -16,11 +16,11 @@ export const Footer: React.FC = () => {
               <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold">
                 <Car className="w-5 h-5 stroke-[2.2]" />
               </div>
-              <span className="text-xl font-bold tracking-tight text-white">
+              <span className="text-xl font-extrabold tracking-tight text-white font-display">
                 {COMPANY_CONFIG.name}
               </span>
             </div>
-            <p className="text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-slate-400 leading-relaxed max-w-sm text-xs sm:text-sm">
               Penyedia jasa sewa dan rental mobil terpercaya di Indonesia. Menyediakan unit tahun muda dengan perawatan berkala resmi, jaminan penggantian unit, dan pilihan lepas kunci atau dengan supir.
             </p>
             <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold pt-1">
@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
 
           {/* Contact Details */}
           <div className="lg:col-span-4 space-y-3">
-            <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2">
+            <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2 font-display">
               Alamat & Kontak Kantor
             </h4>
             <div className="space-y-2.5">
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
 
           {/* Quick Nav & Fleet Tags */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2">
+            <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2 font-display">
               Pilihan Armada Favorit
             </h4>
             <div className="flex flex-wrap gap-1.5">

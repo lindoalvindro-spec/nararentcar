@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { CarCard } from './CarCard';
 import { Vehicle } from '../types/rental';
-import { CarFront, RotateCcw } from 'lucide-react';
+import { CarFront, RotateCcw, Sparkles } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -25,8 +25,8 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
       if (vehicles.length > 0) {
         gsap.fromTo(
           '.car-card-item',
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, stagger: 0.06, duration: 0.4, ease: 'power2.out' }
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: 'power2.out' }
         );
       }
     },
@@ -34,15 +34,21 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
   );
 
   return (
-    <section id="armada" className="pt-4 pb-16" ref={containerRef}>
+    <section id="armada" className="pt-2 pb-16" ref={containerRef}>
       
-      {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Katalog Armada Mobil Siap Pakai
-        </h2>
-        <p className="text-slate-600 text-sm sm:text-base">
-          Semua unit dalam kondisi prima, wangi, ber-AC dingin, dan rutin diservis berkala di bengkel resmi. Pilih unit idaman Anda sekarang.
+      {/* Editorial Section Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-wider mb-2">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+            <span>Unit Tahun 2022 - 2024</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tracking-tight">
+            Katalog Armada Mobil Siap Jalan
+          </h2>
+        </div>
+        <p className="text-slate-600 text-xs sm:text-sm max-w-md">
+          Semua unit terawat rutin di bengkel resmi APM, wangi, ber-AC dingin, dan siap diantar langsung ke alamat Anda.
         </p>
       </div>
 
@@ -62,7 +68,7 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
           <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mx-auto">
             <CarFront className="w-8 h-8" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900">Unit Tidak Ditemukan</h3>
+          <h3 className="text-lg font-bold text-slate-900 font-display">Unit Tidak Ditemukan</h3>
           <p className="text-xs sm:text-sm text-slate-600">
             Tidak ada mobil yang cocok dengan kombinasi filter atau kata kunci pencarian Anda. Silakan reset filter untuk melihat semua armada.
           </p>

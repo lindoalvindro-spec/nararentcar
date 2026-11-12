@@ -1,166 +1,194 @@
-import React, { useRef } from 'react';
-import { ArrowRight, CheckCircle2, ShieldCheck, MapPin, Calendar, Car } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { ArrowRight, ShieldCheck, MapPin, Calendar, CheckCircle } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 
 gsap.registerPlugin(useGSAP);
 
 interface HeroProps {
-  onQuickSearchSelect?: (category: string, serviceType: string) => void;
+  onSearchSubmit?: (serviceType: 'lepas-kunci' | 'dengan-supir', location: string) => void;
 }
 
 export const Hero: React.FC<HeroProps> = () => {
+  const [serviceType, setServiceType] = useState<'lepas-kunci' | 'dengan-supir'>('lepas-kunci');
+  const [location, setLocation] = useState('Jabodetabek (Area Bebas Ongkir)');
+  const [rentalDate, setRentalDate] = useState(new Date().toISOString().split('T')[0]);
+
   const heroRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
-      tl.fromTo('.hero-badge', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 })
-        .fromTo('.hero-title', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.2')
-        .fromTo('.hero-desc', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 }, '-=0.2')
-        .fromTo('.hero-pills > div', { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.35 }, '-=0.1')
-        .fromTo('.hero-cta', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35 }, '-=0.15')
-        .fromTo('.hero-widget', { opacity: 0, x: 25 }, { opacity: 1, x: 0, duration: 0.55 }, '-=0.5');
+      tl.fromTo('.hero-trust-tag', { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.35 })
+        .fromTo('.hero-main-title', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45 }, '-=0.15')
+        .fromTo('.hero-subtitle', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4 }, '-=0.2')
+        .fromTo('.hero-car-image', { opacity: 0, x: 30, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.6 }, '-=0.3')
+        .fromTo('.hero-booking-bar', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45 }, '-=0.2');
     },
     { scope: heroRef }
   );
 
+  const handleSearchClick = () => {
+    const armadaSection = document.getElementById('armada');
+    if (armadaSection) {
+      armadaSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section ref={heroRef} className="bg-white border-b border-slate-200 pt-10 pb-16 lg:pt-16 lg:pb-20 overflow-hidden">
+    <section ref={heroRef} className="bg-white border-b border-slate-200/80 pt-10 pb-12 lg:pt-14 lg:pb-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Main Hero Split Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pb-12">
           
-          {/* Left Column: Headlines & Core Value */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          {/* Left Column: Bold Editorial Pitch */}
+          <div className="lg:col-span-7 space-y-5 text-left">
             
-            <div className="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Armada Terawat Bengkel Resmi & Asuransi Perjalanan</span>
+            <div className="hero-trust-tag inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold">
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+              <span>Standar Unit Terawat & Bebas Biaya Tak Terduga</span>
             </div>
 
-            <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-              Sewa Mobil Aman & Nyaman, <br />
-              <span className="text-emerald-700">Lepas Kunci</span> atau{' '}
-              <span className="text-slate-900">Dengan Supir</span>
+            <h1 className="hero-main-title font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-[1.12]">
+              Sewa Mobil Tanpa Ribet. <br />
+              <span className="text-emerald-700">Bersih, Siap Melaju</span> Setiap Waktu.
             </h1>
 
-            <p className="hero-desc text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
-              Solusi transportasi andal untuk perjalanan dinas kantor, liburan keluarga, maupun antar-jemput bandara. Unit steril bebas asap rokok, STNK aktif, dan didukung layanan darurat 24 jam.
+            <p className="hero-subtitle text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
+              Pilihan armada tahun muda dengan perawatan berkala resmi. Tersedia paket lepas kunci untuk kebebasan agenda Anda, atau supir profesional untuk perjalanan dinas bebas lelah.
             </p>
 
-            {/* Verifiable commitments */}
-            <div className="hero-pills grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                <span className="text-xs font-semibold text-slate-800">Unit Tahun Muda (2024)</span>
+            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 pt-1 text-xs text-slate-700 font-semibold">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-emerald-600" />
+                <span>Unit Tahun 2024</span>
               </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                <span className="text-xs font-semibold text-slate-800">Garansi Mobil Pengganti</span>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-emerald-600" />
+                <span>Garansi Penggantian Mobil</span>
               </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                <span className="text-xs font-semibold text-slate-800">Bebas Bau Rokok</span>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-emerald-600" />
+                <span>Bebas Bau Rokok</span>
               </div>
-            </div>
-
-            {/* Action buttons */}
-            <div className="hero-cta flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
-              <a
-                href="#armada"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition-colors"
-              >
-                <span>Lihat Daftar Mobil & Tarif</span>
-                <ArrowRight className="w-4 h-4 stroke-[2.2]" />
-              </a>
-              <a
-                href={buildWhatsAppSupportUrl('Tanya Ketersediaan Unit Hari Ini')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm border border-slate-300 transition-colors"
-              >
-                <span>Konsultasi Ketersediaan (WA)</span>
-              </a>
             </div>
 
           </div>
 
-          {/* Right Column: Practical Quick Action Box */}
-          <div className="lg:col-span-5">
-            <div className="hero-widget bg-white rounded-2xl border border-slate-200 shadow-xl p-6 sm:p-7 space-y-5">
+          {/* Right Column: Studio Showcase Cutout */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center">
+            <div className="relative w-full max-w-lg">
               
-              <div className="border-b border-slate-100 pb-4">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">
-                  Pencarian Cepat
-                </span>
-                <h2 className="text-lg font-bold text-slate-900">
-                  Cek Ketersediaan Armada
-                </h2>
-              </div>
-
-              {/* Form elements for immediate interactive engagement */}
-              <div className="space-y-4">
-                <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Area Layanan / Penjemputan</span>
-                  </label>
-                  <select
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-800 text-sm focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
-                    defaultValue="jabodetabek"
-                  >
-                    <option value="jabodetabek">Area Jabodetabek (Jakarta, Bogor, Depok, Tangerang, Bekasi)</option>
-                    <option value="soetta">Bandara Internasional Soekarno-Hatta (CGK)</option>
-                    <option value="halim">Bandara Halim Perdanakusuma (HLP)</option>
-                    <option value="luar-kota">Perjalanan Luar Kota / Antar-Provinsi</option>
-                  </select>
+              {/* Studio Stage Light & Ground Shadow */}
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-100 to-slate-200/50 rounded-3xl -z-10" />
+              
+              <div className="p-6 text-center">
+                <div className="hero-car-image relative py-4">
+                  <img
+                    src="/images/cars/zenix.png"
+                    alt="Toyota Innova Zenix Studio Showcase"
+                    className="w-full max-h-56 object-contain drop-shadow-2xl mx-auto transform hover:scale-102 transition-transform duration-300"
+                  />
+                  {/* Studio floor shadow */}
+                  <div className="w-4/5 h-3 bg-slate-400/25 blur-md rounded-full mx-auto -mt-2" />
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center justify-between pt-2 border-t border-slate-200/80 text-left">
                   <div>
-                    <label className="text-xs font-bold text-slate-700 block mb-1.5 flex items-center gap-1.5">
-                      <Car className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Jenis Layanan</span>
-                    </label>
-                    <select
-                      className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-800 text-sm focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
-                      defaultValue="lepas-kunci"
-                    >
-                      <option value="lepas-kunci">Lepas Kunci</option>
-                      <option value="dengan-supir">Dengan Supir</option>
-                    </select>
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Armada Unggulan</span>
+                    <span className="font-display font-extrabold text-slate-900 text-sm">Toyota Innova Zenix 2.0 V</span>
                   </div>
-                  <div>
-                    <label className="text-xs font-bold text-slate-700 block mb-1.5 flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Rencana Mulai</span>
-                    </label>
-                    <input
-                      type="date"
-                      defaultValue={new Date().toISOString().split('T')[0]}
-                      className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-800 text-sm focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
-                    />
+                  <div className="text-right">
+                    <span className="text-[11px] text-slate-500 block">Mulai Dari</span>
+                    <span className="font-display font-extrabold text-emerald-700 text-sm">Rp 750.000 <span className="text-[10px] text-slate-500 font-normal">/hari</span></span>
                   </div>
                 </div>
-
-                <a
-                  href="#armada"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-colors shadow-sm"
-                >
-                  <span>Tampilkan Mobil Sesuai Pilihan</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                <span>Tarif mulai <strong>Rp 350.000 / hari</strong></span>
-                <span>Termasuk PPN & Asuransi</span>
               </div>
 
             </div>
+          </div>
+
+        </div>
+
+        {/* Integrated Horizontal Booking Bar */}
+        <div className="hero-booking-bar bg-slate-900 rounded-2xl shadow-xl p-4 sm:p-5 text-white">
+          
+          {/* Top Toggle: Service Type Tabs */}
+          <div className="flex items-center gap-2 mb-4">
+            <button
+              type="button"
+              onClick={() => setServiceType('lepas-kunci')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                serviceType === 'lepas-kunci'
+                  ? 'bg-emerald-600 text-white shadow-xs'
+                  : 'bg-slate-800 text-slate-300 hover:text-white'
+              }`}
+            >
+              Lepas Kunci (Self-Drive)
+            </button>
+            <button
+              type="button"
+              onClick={() => setServiceType('dengan-supir')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                serviceType === 'dengan-supir'
+                  ? 'bg-emerald-600 text-white shadow-xs'
+                  : 'bg-slate-800 text-slate-300 hover:text-white'
+              }`}
+            >
+              Dengan Supir (With Driver)
+            </button>
+          </div>
+
+          {/* Form Bar Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+            
+            {/* Lokasi Jemput */}
+            <div className="md:col-span-5 bg-slate-800/90 rounded-xl p-3 border border-slate-700/80">
+              <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Lokasi Serah Terima / Penjemputan</span>
+              </label>
+              <select
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="w-full bg-transparent text-white font-semibold text-xs sm:text-sm focus:outline-none"
+              >
+                <option value="Jabodetabek (Area Bebas Ongkir)" className="bg-slate-900 text-white">Jabodetabek (Antar ke Rumah / Kantor)</option>
+                <option value="Bandara Soekarno-Hatta (CGK) Terminal 1/2/3" className="bg-slate-900 text-white">Bandara Soekarno-Hatta (CGK) Terminal 1/2/3</option>
+                <option value="Bandara Halim Perdanakusuma (HLP)" className="bg-slate-900 text-white">Bandara Halim Perdanakusuma (HLP)</option>
+                <option value="Stasiun Gambir / Pasar Senen" className="bg-slate-900 text-white">Stasiun Gambir / Stasiun Senen</option>
+                <option value="Perjalanan Luar Kota / Antar-Kota" className="bg-slate-900 text-white">Drop-Off Luar Kota (Bandung, Semarang, dll.)</option>
+              </select>
+            </div>
+
+            {/* Tanggal Sewa */}
+            <div className="md:col-span-4 bg-slate-800/90 rounded-xl p-3 border border-slate-700/80">
+              <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Tanggal Mulai Sewa</span>
+              </label>
+              <input
+                type="date"
+                value={rentalDate}
+                onChange={(e) => setRentalDate(e.target.value)}
+                className="w-full bg-transparent text-white font-semibold text-xs sm:text-sm focus:outline-none"
+              />
+            </div>
+
+            {/* Tombol Cari */}
+            <div className="md:col-span-3">
+              <button
+                type="button"
+                onClick={handleSearchClick}
+                className="w-full h-full min-h-[58px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-display font-bold text-sm transition-all shadow-md active:scale-98"
+              >
+                <span>Cari Mobil</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+              </button>
+            </div>
+
           </div>
 
         </div>
