@@ -4,8 +4,9 @@ import { Vehicle } from '../types/rental';
 import { CarFront, RotateCcw, Sparkles } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface FleetShowcaseProps {
   vehicles: Vehicle[];
@@ -22,11 +23,22 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
 
   useGSAP(
     () => {
-      if (vehicles.length > 0) {
+      if (vehicles.length > 0 && containerRef.current) {
         gsap.fromTo(
           '.car-card-item',
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: 'power2.out' }
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.07,
+            duration: 0.45,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
         );
       }
     },
@@ -75,7 +87,7 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
           <button
             type="button"
             onClick={onResetFilter}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-colors cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Lihat Semua Mobil</span>

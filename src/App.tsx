@@ -9,6 +9,7 @@ import { RentalRequirements } from './components/RentalRequirements';
 import { QualityAssurance } from './components/QualityAssurance';
 import { FAQ } from './components/FAQ';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { MobileStickyDock } from './components/MobileStickyDock';
 import { Footer } from './components/Footer';
 
 import { VEHICLES_DATA } from './data/cars';
@@ -104,6 +105,9 @@ export function App() {
 
       {/* Floating Action Button */}
       <FloatingWhatsApp />
+
+      {/* Mobile Sticky Bottom Quick-Action Dock */}
+      <MobileStickyDock totalVehicles={filteredVehicles.length} />
 
       {/* Modal Dialog for Car Detail & Price Estimator */}
       <CarDetailModal

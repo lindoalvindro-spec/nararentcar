@@ -3,8 +3,9 @@ import { CheckCircle2, User, Plane, Building, FileCheck, ArrowRight, ShieldCheck
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type CustomerType = 'domisili' | 'wisatawan' | 'perusahaan';
 
@@ -18,24 +19,81 @@ export const RentalRequirements: React.FC = () => {
   const [activeTab, setActiveTab] = useState<CustomerType>('domisili');
   const containerRef = useRef<HTMLElement>(null);
   const checklistRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
+      // Entrance for section headers and left pane
       gsap.fromTo(
         '.req-header',
         { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.45,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
       );
+
       gsap.fromTo(
         '.req-left-pane',
-        { opacity: 0, x: -15 },
-        { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out', delay: 0.1 }
+        { opacity: 0, x: -18 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        }
       );
-      gsap.fromTo(
-        '.req-step-item',
-        { opacity: 0, x: 15 },
-        { opacity: 1, x: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out', delay: 0.15 }
-      );
+
+      // Scroll-Triggered Timeline Progress Line
+      if (timelineRef.current) {
+        gsap.fromTo(
+          '.timeline-progress-fill',
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: 'top 75%',
+              end: 'bottom 75%',
+              scrub: 0.5,
+            },
+          }
+        );
+
+        // Step Badges Activation as scroll passes through them
+        const badges = gsap.utils.toArray<HTMLElement>('.timeline-step-badge');
+        badges.forEach((badge) => {
+          gsap.fromTo(
+            badge,
+            { backgroundColor: '#e2e8f0', color: '#64748b', scale: 0.95 },
+            {
+              backgroundColor: '#059669',
+              color: '#ffffff',
+              scale: 1.08,
+              duration: 0.25,
+              ease: 'back.out(1.5)',
+              scrollTrigger: {
+                trigger: badge,
+                start: 'top 70%',
+                toggleActions: 'play reverse play reverse',
+              },
+            }
+          );
+        });
+      }
     },
     { scope: containerRef }
   );
@@ -45,8 +103,8 @@ export const RentalRequirements: React.FC = () => {
     if (checklistRef.current) {
       gsap.fromTo(
         checklistRef.current,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' }
       );
     }
   };
@@ -145,7 +203,7 @@ export const RentalRequirements: React.FC = () => {
                       key={tab.id}
                       type="button"
                       onClick={() => handleTabChange(tab.id)}
-                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-bold transition-all ${
+                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                         isActive
                           ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
                           : 'text-slate-600 hover:text-slate-900'
@@ -219,7 +277,7 @@ export const RentalRequirements: React.FC = () => {
                 href={buildWhatsAppSupportUrl('Konsultasi Dokumen Persyaratan Sewa')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-bold text-emerald-800 hover:text-emerald-900 flex-shrink-0 underline"
+                className="inline-flex items-center gap-1 font-bold text-emerald-800 hover:text-emerald-900 flex-shrink-0 underline cursor-pointer"
               >
                 <span>Tanya Admin</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -228,18 +286,25 @@ export const RentalRequirements: React.FC = () => {
 
           </div>
 
-          {/* Right Column: 4-Step Vertical Timeline (5 Cols) */}
-          <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+          {/* Right Column: 4-Step Vertical Timeline (5 Cols) with ScrollTrigger Progress Line */}
+          <div ref={timelineRef} className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
             <h3 className="text-base font-bold font-display text-slate-900 mb-6 flex items-center gap-2">
               <span>Alur Pemesanan Cepat</span>
               <span className="text-xs font-normal text-slate-500">(Tanpa Ribet)</span>
             </h3>
 
-            <div className="relative pl-6 space-y-8 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-200">
+            {/* Timeline wrapper with base track & active progress fill */}
+            <div className="relative pl-7 space-y-8">
+              {/* Base gray vertical line */}
+              <div className="absolute left-2.5 top-2.5 bottom-3 w-0.5 bg-slate-200" />
+              
+              {/* Active emerald overlay line that fills on scroll */}
+              <div className="timeline-progress-fill absolute left-2.5 top-2.5 bottom-3 w-0.5 bg-emerald-600 origin-top" />
+
               {steps.map((step, idx) => (
-                <div key={idx} className="req-step-item relative space-y-1">
-                  {/* Step Dot */}
-                  <div className="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shadow-sm ring-4 ring-white">
+                <div key={idx} className="relative space-y-1">
+                  {/* Step Dot Badge with dynamic activation */}
+                  <div className="timeline-step-badge absolute -left-7 top-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm ring-4 ring-white transition-colors">
                     {idx + 1}
                   </div>
                   
@@ -263,7 +328,7 @@ export const RentalRequirements: React.FC = () => {
                 href={buildWhatsAppSupportUrl('Halo Admin, Saya Ingin Mulai Booking Unit')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm cursor-pointer"
               >
                 <span>Mulai Booking via WhatsApp</span>
                 <ArrowRight className="w-4 h-4" />
