@@ -1,5 +1,19 @@
 import React, { useState, useRef } from 'react';
-import { CheckCircle2, User, Plane, Building, FileCheck, ArrowRight, ShieldCheck, Clock } from 'lucide-react';
+import { 
+  User, 
+  Plane, 
+  Building, 
+  FileCheck, 
+  ArrowRight, 
+  ShieldCheck, 
+  Clock, 
+  Lock, 
+  CreditCard, 
+  FileText, 
+  Home, 
+  Briefcase, 
+  Check
+} from 'lucide-react';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -9,24 +23,18 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type CustomerType = 'domisili' | 'wisatawan' | 'perusahaan';
 
-interface RequirementItem {
-  name: string;
-  mandatory: boolean;
-  note?: string;
-}
-
 export const RentalRequirements: React.FC = () => {
   const [activeTab, setActiveTab] = useState<CustomerType>('domisili');
   const containerRef = useRef<HTMLElement>(null);
-  const checklistRef = useRef<HTMLDivElement>(null);
+  const dossierContentRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      // Entrance for section headers and left pane
+      // Header entrance
       gsap.fromTo(
         '.req-header',
-        { opacity: 0, y: 15 },
+        { opacity: 0, y: 16 },
         {
           opacity: 1,
           y: 0,
@@ -40,12 +48,13 @@ export const RentalRequirements: React.FC = () => {
         }
       );
 
+      // Section cards entrance
       gsap.fromTo(
-        '.req-left-pane',
-        { opacity: 0, x: -18 },
+        '.req-dossier-card',
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
-          x: 0,
+          y: 0,
           duration: 0.5,
           ease: 'power2.out',
           scrollTrigger: {
@@ -56,7 +65,24 @@ export const RentalRequirements: React.FC = () => {
         }
       );
 
-      // Scroll-Triggered Timeline Progress Line
+      gsap.fromTo(
+        '.req-timeline-card',
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          delay: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      // ScrollTrigger Timeline Progress Line
       if (timelineRef.current) {
         gsap.fromTo(
           '.timeline-progress-fill',
@@ -66,33 +92,12 @@ export const RentalRequirements: React.FC = () => {
             ease: 'none',
             scrollTrigger: {
               trigger: timelineRef.current,
-              start: 'top 75%',
+              start: 'top 70%',
               end: 'bottom 75%',
               scrub: 0.5,
             },
           }
         );
-
-        // Step Badges Activation as scroll passes through them
-        const badges = gsap.utils.toArray<HTMLElement>('.timeline-step-badge');
-        badges.forEach((badge) => {
-          gsap.fromTo(
-            badge,
-            { backgroundColor: '#e2e8f0', color: '#64748b', scale: 0.95 },
-            {
-              backgroundColor: '#059669',
-              color: '#ffffff',
-              scale: 1.08,
-              duration: 0.25,
-              ease: 'back.out(1.5)',
-              scrollTrigger: {
-                trigger: badge,
-                start: 'top 70%',
-                toggleActions: 'play reverse play reverse',
-              },
-            }
-          );
-        });
       }
     },
     { scope: containerRef }
@@ -100,66 +105,69 @@ export const RentalRequirements: React.FC = () => {
 
   const handleTabChange = (type: CustomerType) => {
     setActiveTab(type);
-    if (checklistRef.current) {
+    if (dossierContentRef.current) {
       gsap.fromTo(
-        checklistRef.current,
-        { opacity: 0, y: 8 },
-        { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' }
+        dossierContentRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
       );
     }
   };
 
-  const tabs: { id: CustomerType; label: string; icon: React.FC<{ className?: string }> }[] = [
-    { id: 'domisili', label: 'Warga Domisili Jabodetabek', icon: User },
-    { id: 'wisatawan', label: 'Wisatawan / Tamu Luar Kota', icon: Plane },
-    { id: 'perusahaan', label: 'Instansi / Korporasi', icon: Building },
+  const tabs: {
+    id: CustomerType;
+    label: string;
+    sublabel: string;
+    icon: React.FC<{ className?: string }>;
+  }[] = [
+    {
+      id: 'domisili',
+      label: 'Domisili Jabodetabek',
+      sublabel: 'KTP & Bukti Tinggal',
+      icon: User,
+    },
+    {
+      id: 'wisatawan',
+      label: 'Wisatawan / Luar Kota',
+      sublabel: 'Tiket PP & Reservasi Hotel',
+      icon: Plane,
+    },
+    {
+      id: 'perusahaan',
+      label: 'Instansi & Korporasi',
+      sublabel: 'NIB, NPWP & PO Resmi',
+      icon: Building,
+    },
   ];
-
-  const requirementsData: Record<CustomerType, RequirementItem[]> = {
-    domisili: [
-      { name: 'E-KTP asli penyewa (wajib aktif)', mandatory: true },
-      { name: 'Surat Izin Mengemudi (SIM A) sah dan masih berlaku', mandatory: true },
-      { name: 'Bukti domisili (PBB, rekening listrik/air, atau Kartu Keluarga)', mandatory: true },
-      { name: 'Akun media sosial aktif untuk verifikasi identitas kilat', mandatory: false, note: 'Instagram / LinkedIn' },
-      { name: 'Deposit jaminan sewa (ditransfer balik 100% setelah unit kembali)', mandatory: true, note: 'Bebas potongan' },
-    ],
-    wisatawan: [
-      { name: 'E-KTP asli penyewa', mandatory: true },
-      { name: 'Surat Izin Mengemudi (SIM A) aktif', mandatory: true },
-      { name: 'Tiket pesawat / kereta api Pulang Pergi (PP)', mandatory: true, note: 'Konfirmasi tanggal kembali' },
-      { name: 'Bukti reservasi hotel / penginapan selama di kota', mandatory: true },
-      { name: 'Akun media sosial aktif penyewa', mandatory: false },
-      { name: 'Deposit jaminan sewa lepas kunci', mandatory: true, note: 'Refund 1x24 jam' },
-    ],
-    perusahaan: [
-      { name: 'Nomor Induk Berusaha (NIB) dan NPWP Perusahaan', mandatory: true },
-      { name: 'KTP & SIM A pengemudi yang ditugaskan resmi', mandatory: true },
-      { name: 'Surat Tugas / Keterangan Kerja dari manajemen instansi', mandatory: true },
-      { name: 'Purchase Order (PO) resmi bertanda tangan pimpinan', mandatory: true },
-      { name: 'Bebas uang deposit untuk mitra korporat terdaftar', mandatory: false, note: 'Fasilitas korporat' },
-    ],
-  };
 
   const steps = [
     {
       num: '01',
-      title: 'Pilih Unit & Tanggal',
-      desc: 'Tentukan model mobil yang Anda inginkan, durasi pemakaian, serta opsi lepas kunci atau supir.',
+      title: 'Pilih Armada & Tanggal Sewa',
+      sla: 'Instan di Website',
+      slaColor: 'bg-slate-100 text-slate-700 border-slate-200',
+      desc: 'Tentukan model kendaraan yang Anda butuhkan, tanggal pemakaian, serta opsi lepas kunci atau supir.',
     },
     {
       num: '02',
-      title: 'Verifikasi via WhatsApp',
-      desc: 'Cukup kirim foto dokumen persyaratan ke admin kami. Verifikasi berkas cepat hanya 15-30 menit.',
+      title: 'Verifikasi Berkas via WhatsApp',
+      sla: 'Proses ~15 - 30 Menit',
+      slaColor: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+      desc: 'Kirimkan foto dokumen persyaratan melalui WhatsApp admin kami tanpa perlu datang ke kantor fisik.',
     },
     {
       num: '03',
-      title: 'Serah Terima Kendaraan',
-      desc: 'Mobil diantar ke alamat Anda, bandara, atau stasiun. Cek fisik bersama dan tanda tangan serah terima.',
+      title: 'Serah Terima & Cek Fisik Unit',
+      sla: 'Antar ke Lokasi Anda',
+      slaColor: 'bg-blue-50 text-blue-800 border-blue-200',
+      desc: 'Mobil diantar tepat waktu ke alamat, bandara, atau stasiun. Cek fisik bersama petugas dan tanda tangani formulir.',
     },
     {
       num: '04',
-      title: 'Pengembalian & Refund Jaminan',
-      desc: 'Unit dijemput kembali. Dana deposit jaminan ditransfer kembali utuh 100% maksimal dalam 1x24 jam.',
+      title: 'Pengembalian & Refund Deposit',
+      sla: 'Garansi Maksimal 1x24 Jam',
+      slaColor: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+      desc: 'Unit dijemput kembali. Dana jaminan deposit ditransfer kembali utuh 100% ke rekening Anda tanpa potongan.',
     },
   ];
 
@@ -172,29 +180,35 @@ export const RentalRequirements: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-wider mb-3">
               <FileCheck className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Panduan Dokumen Transparan</span>
+              <span>Verifikasi & Prosedur Sewa</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-display tracking-tight">
-              Syarat Sewa & 4 Langkah Pemesanan
+              Syarat Sewa Transparan & Alur Pemesanan
             </h2>
           </div>
           <p className="text-slate-600 text-sm sm:text-base max-w-xl">
-            Proses verifikasi dokumen cepat melalui WhatsApp tanpa penahanan dokumen asli yang berisiko. Cek berkas yang perlu Anda siapkan.
+            Proses verifikasi dokumen cepat melalui WhatsApp tanpa penahanan dokumen fisik asli yang berisiko. Cek berkas yang perlu Anda siapkan.
           </p>
         </div>
 
-        {/* Split Grid: Left (Requirements Matrix) & Right (Step-by-Step Timeline) */}
+        {/* Split Grid: Left (Executive Concierge Dossier) & Right (Timeline Cards with SLAs) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Requirements Tab & Matrix (7 Cols) */}
-          <div className="req-left-pane lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+          {/* Left Column: Executive Concierge Dossier (7 Cols) */}
+          <div className="req-dossier-card lg:col-span-7 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
             
-            {/* Tab Pill Buttons */}
+            {/* Segmented Selector with Sub-labels (No Ellipsis, Generous Breathing Room) */}
             <div>
-              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-3">
-                Kategori Penyewa:
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 rounded-xl bg-slate-100 border border-slate-200">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  Pilih Kategori Penyewa:
+                </span>
+                <span className="text-xs text-emerald-700 font-semibold hidden sm:inline-block">
+                  Pilih sesuai identitas Anda
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 p-1.5 rounded-xl bg-slate-100/90 border border-slate-200">
                 {tabs.map((tab) => {
                   const Icon = tab.icon;
                   const isActive = activeTab === tab.id;
@@ -203,136 +217,402 @@ export const RentalRequirements: React.FC = () => {
                       key={tab.id}
                       type="button"
                       onClick={() => handleTabChange(tab.id)}
-                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      className={`flex flex-col items-start p-3 rounded-lg text-left transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                          : 'text-slate-600 hover:text-slate-900'
+                          ? 'bg-white text-slate-950 shadow-sm border border-slate-200 ring-1 ring-slate-200/60'
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
                       }`}
                     >
-                      <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-700' : 'text-slate-400'}`} />
-                      <span className="truncate">{tab.label}</span>
+                      <div className="flex items-center gap-2 mb-1">
+                        <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-700' : 'text-slate-500'}`} />
+                        <span className="text-xs font-bold font-display">
+                          {tab.label}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-slate-500 font-normal leading-tight">
+                        {tab.sublabel}
+                      </span>
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            {/* Checklist items */}
-            <div ref={checklistRef} className="space-y-3 pt-2">
-              <div className="flex items-center justify-between text-xs text-slate-500 pb-1 border-b border-slate-100">
-                <span>Daftar Berkas Persyaratan</span>
-                <span>Status Dokumen</span>
-              </div>
-
-              {requirementsData[activeTab].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100/70 transition-colors"
-                >
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-xs sm:text-sm font-semibold text-slate-900 block">
-                        {item.name}
+            {/* Hierarchical Document Dossier Content */}
+            <div ref={dossierContentRef} className="space-y-6 pt-2">
+              
+              {/* Category 1: Warga Domisili Jabodetabek */}
+              {activeTab === 'domisili' && (
+                <div className="space-y-4">
+                  {/* Primary Mandatory IDs */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        1. Dokumen Identitas Utama
                       </span>
-                      {item.note && (
-                        <span className="text-[11px] text-slate-500 font-normal">
-                          {item.note}
-                        </span>
-                      )}
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Wajib Disiapkan
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {/* E-KTP */}
+                      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-xs">
+                          <CreditCard className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-slate-900 font-display block">
+                            E-KTP Asli Penyewa
+                          </span>
+                          <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                            KTP aktif & sah secara hukum
+                          </span>
+                          <span className="inline-block text-[10px] text-emerald-700 font-semibold bg-emerald-100/60 px-1.5 py-0.5 rounded mt-1.5">
+                            Foto kamera HP, bebas fotokopi
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* SIM A */}
+                      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-xs">
+                          <FileText className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-slate-900 font-display block">
+                            SIM A Sah & Aktif
+                          </span>
+                          <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                            Surat izin mengemudi pengemudi
+                          </span>
+                          <span className="inline-block text-[10px] text-emerald-700 font-semibold bg-emerald-100/60 px-1.5 py-0.5 rounded mt-1.5">
+                            Masa berlaku masih hidup
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <span
-                    className={`text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md border flex-shrink-0 ${
-                      item.mandatory
-                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                        : 'bg-slate-200 text-slate-700 border-slate-300'
-                    }`}
-                  >
-                    {item.mandatory ? 'Wajib' : 'Pendukung'}
-                  </span>
+                  {/* Secondary Verification (Pilih Salah Satu) */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        2. Verifikasi Domisili (Pilih Salah Satu)
+                      </span>
+                      <span className="text-[11px] font-medium text-slate-500">
+                        Salah satu cukup
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                      <div className="flex items-start gap-2.5 text-xs text-slate-700">
+                        <Home className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Bukti Domisili:</strong> Rekening listrik, tagihan air PDAM, bukti PBB rumah, atau Kartu Keluarga (KK).</span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs text-slate-700 pt-1.5 border-t border-slate-200/60">
+                        <User className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Verifikasi Tambahan:</strong> Akun media sosial aktif (Instagram / LinkedIn) untuk pencocokan identitas kilat.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Deposit Section */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        3. Ketentuan Jaminan Sewa
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Refund 100%
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                      <Clock className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <div className="text-xs text-slate-700 leading-relaxed">
+                        <strong>Deposit Jaminan Lepas Kunci:</strong> Uang deposit ditransfer saat booking dan dikembalikan utuh 100% via transfer bank maksimal 1x24 jam setelah mobil dikembalikan dalam kondisi aman.
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              )}
+
+              {/* Category 2: Wisatawan / Tamu Luar Kota */}
+              {activeTab === 'wisatawan' && (
+                <div className="space-y-4">
+                  {/* Primary Mandatory IDs */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        1. Dokumen Identitas Utama
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Wajib Disiapkan
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-xs">
+                          <CreditCard className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-slate-900 font-display block">
+                            E-KTP Asli Penyewa
+                          </span>
+                          <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                            Identitas resmi warga negara
+                          </span>
+                          <span className="inline-block text-[10px] text-emerald-700 font-semibold bg-emerald-100/60 px-1.5 py-0.5 rounded mt-1.5">
+                            Cukup foto via WhatsApp
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-xs">
+                          <FileText className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-slate-900 font-display block">
+                            SIM A Aktif
+                          </span>
+                          <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                            Surat izin mengemudi sah
+                          </span>
+                          <span className="inline-block text-[10px] text-emerald-700 font-semibold bg-emerald-100/60 px-1.5 py-0.5 rounded mt-1.5">
+                            Berlaku sewa lepas kunci
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Travel Proofs */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        2. Bukti Kunjungan Wisata / Perjalanan
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Konfirmasi Jadwal
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                      <div className="flex items-start gap-2.5 text-xs text-slate-700">
+                        <Plane className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Tiket Pesawat / Kereta Api PP:</strong> Tiket kedatangan dan kepulangan sebagai konfirmasi durasi kunjungan.</span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs text-slate-700 pt-1.5 border-t border-slate-200/60">
+                        <Home className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Bukti Reservasi Penginapan:</strong> Voucher booking hotel, villa, atau apartemen selama di kota tujuan.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Deposit Section */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        3. Ketentuan Jaminan Sewa
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Refund 100%
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                      <Clock className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <div className="text-xs text-slate-700 leading-relaxed">
+                        <strong>Deposit Jaminan Wisatawan:</strong> Pengembalian dana jaminan diproses utuh via transfer bank maksimal 1x24 jam setelah pengembalian unit di bandara atau hotel.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Category 3: Instansi / Korporasi */}
+              {activeTab === 'perusahaan' && (
+                <div className="space-y-4">
+                  {/* Corporate Legalities */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        1. Legalitas Badan Usaha
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Faktur Resmi
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-xs">
+                          <Building className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-slate-900 font-display block">
+                            NIB & NPWP Perusahaan
+                          </span>
+                          <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                            Nomor Induk Berusaha aktif
+                          </span>
+                          <span className="inline-block text-[10px] text-emerald-700 font-semibold bg-emerald-100/60 px-1.5 py-0.5 rounded mt-1.5">
+                            Faktur Pajak PPh 23
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-xs">
+                          <Briefcase className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-slate-900 font-display block">
+                            Purchase Order (PO) Resmi
+                          </span>
+                          <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                            Surat tugas / PO bertanda tangan
+                          </span>
+                          <span className="inline-block text-[10px] text-emerald-700 font-semibold bg-emerald-100/60 px-1.5 py-0.5 rounded mt-1.5">
+                            Invoicing tempo 30 hari
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Driver Assignment */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                        2. Identitas Pengemudi yang Ditugaskan
+                      </span>
+                      <span className="text-[11px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                        Karyawan Resmi
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                      <div className="flex items-start gap-2.5 text-xs text-slate-700">
+                        <CreditCard className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>KTP & SIM A Karyawan:</strong> Identitas driver operasional yang ditugaskan oleh instansi.</span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs text-slate-700 pt-1.5 border-t border-slate-200/60">
+                        <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Bebas Deposit:</strong> Mitra korporat terdaftar bebas uang jaminan deposit sewa mobil.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
             </div>
 
-            {/* Trust and Safety Badges */}
-            <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="flex items-start gap-2.5 text-slate-600">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                <span><strong>Tanpa Tahan Dokumen Asli</strong>. Berkas fisik hanya ditunjukkan saat serah terima unit.</span>
+            {/* Privacy & Safety Guarantee Seal */}
+            <div className="pt-4 border-t border-slate-200/80">
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-slate-900 block font-display">
+                      Jaminan Keamanan & Kerahasiaan Data
+                    </span>
+                    <span className="text-[11px] text-slate-500 block">
+                      Tanpa tahan dokumen fisik asli. Berkas hanya untuk verifikasi sewa resmi.
+                    </span>
+                  </div>
+                </div>
+                <a
+                  href={buildWhatsAppSupportUrl('Konsultasi Dokumen Persyaratan Sewa')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-bold text-xs text-emerald-700 hover:text-emerald-800 flex-shrink-0 cursor-pointer"
+                >
+                  <span>Tanya Admin</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
-              <div className="flex items-start gap-2.5 text-slate-600">
-                <Clock className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                <span><strong>Garansi Refund 1x24 Jam</strong>. Deposit jaminan kembali utuh via transfer bank.</span>
-              </div>
-            </div>
-
-            {/* Fast WhatsApp Help Link */}
-            <div className="pt-2 flex items-center justify-between text-xs bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
-              <span className="text-emerald-950 font-medium">
-                Ada dokumen yang belum lengkap atau punya kebutuhan khusus?
-              </span>
-              <a
-                href={buildWhatsAppSupportUrl('Konsultasi Dokumen Persyaratan Sewa')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-bold text-emerald-800 hover:text-emerald-900 flex-shrink-0 underline cursor-pointer"
-              >
-                <span>Tanya Admin</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
             </div>
 
           </div>
 
-          {/* Right Column: 4-Step Vertical Timeline (5 Cols) with ScrollTrigger Progress Line */}
-          <div ref={timelineRef} className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
-            <h3 className="text-base font-bold font-display text-slate-900 mb-6 flex items-center gap-2">
-              <span>Alur Pemesanan Cepat</span>
-              <span className="text-xs font-normal text-slate-500">(Tanpa Ribet)</span>
-            </h3>
-
-            {/* Timeline wrapper with base track & active progress fill */}
-            <div className="relative pl-7 space-y-8">
-              {/* Base gray vertical line */}
-              <div className="absolute left-2.5 top-2.5 bottom-3 w-0.5 bg-slate-200" />
-              
-              {/* Active emerald overlay line that fills on scroll */}
-              <div className="timeline-progress-fill absolute left-2.5 top-2.5 bottom-3 w-0.5 bg-emerald-600 origin-top" />
-
-              {steps.map((step, idx) => (
-                <div key={idx} className="relative space-y-1">
-                  {/* Step Dot Badge with dynamic activation */}
-                  <div className="timeline-step-badge absolute -left-7 top-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm ring-4 ring-white transition-colors">
-                    {idx + 1}
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700">Langkah {step.num}</span>
-                  </div>
-                  
-                  <h4 className="text-sm font-bold text-slate-900 font-display">
-                    {step.title}
-                  </h4>
-                  
-                  <p className="text-xs text-slate-600 leading-relaxed pt-0.5">
-                    {step.desc}
-                  </p>
+          {/* Right Column: Executive Timeline Cards with Realistic SLAs (5 Cols) */}
+          <div ref={timelineRef} className="req-timeline-card lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 block mb-0.5">
+                    Standar Operasional Prosedur
+                  </span>
+                  <h3 className="text-base font-bold font-display text-slate-900">
+                    4 Langkah Pemesanan Cepat
+                  </h3>
                 </div>
-              ))}
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
+                  Transparan
+                </span>
+              </div>
+
+              {/* Timeline Container with Progress Fill Line */}
+              <div className="relative pl-7 space-y-6">
+                {/* Background vertical gray rail */}
+                <div className="absolute left-2.5 top-2 bottom-3 w-0.5 bg-slate-200" />
+                
+                {/* Scroll-triggered emerald progress rail */}
+                <div className="timeline-progress-fill absolute left-2.5 top-2 bottom-3 w-0.5 bg-emerald-600 origin-top" />
+
+                {steps.map((step, idx) => (
+                  <div key={idx} className="relative group">
+                    {/* Number Indicator Node */}
+                    <div className="absolute -left-7 top-0.5 w-5 h-5 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-bold ring-4 ring-white shadow-xs">
+                      {idx + 1}
+                    </div>
+
+                    {/* Step Card */}
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-slate-300 transition-colors">
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                          Tahap {step.num}
+                        </span>
+                        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${step.slaColor}`}>
+                          {step.sla}
+                        </span>
+                      </div>
+
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-display mb-1">
+                        {step.title}
+                      </h4>
+
+                      <p className="text-[11px] text-slate-600 leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-100">
+            {/* Bottom Action Area */}
+            <div className="mt-6 pt-5 border-t border-slate-100 space-y-2.5">
               <a
                 href={buildWhatsAppSupportUrl('Halo Admin, Saya Ingin Mulai Booking Unit')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold font-display text-xs sm:text-sm transition-colors shadow-sm cursor-pointer"
               >
                 <span>Mulai Booking via WhatsApp</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 stroke-[2.2]" />
               </a>
+
+              <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 text-center">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Respon admin kilat &lt; 3 menit pada jam operasional</span>
+              </div>
             </div>
 
           </div>
