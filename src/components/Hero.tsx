@@ -116,6 +116,9 @@ export const Hero: React.FC<HeroProps> = () => {
                   <img
                     src="/images/cars/zenix.png"
                     alt="Toyota Innova Zenix Studio Showcase"
+                    fetchPriority="high"
+                    width={600}
+                    height={338}
                     className="hero-car-image w-full max-h-56 object-contain drop-shadow-2xl mx-auto transform hover:scale-102 transition-transform duration-300"
                   />
                   {/* Studio floor shadow that animates in sync */}
