@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { CarCard } from './CarCard';
 import { Vehicle } from '../types/rental';
-import { CarFront, RotateCcw, Sparkles } from 'lucide-react';
+import { CarFront, RotateCcw } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -51,16 +51,15 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
       {/* Editorial Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-wider mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Unit Tahun 2022 - 2024</span>
-          </div>
+          <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest block mb-1.5">
+            Armada Tahun 2022 - 2024
+          </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tracking-tight">
-            Katalog Armada Mobil Siap Jalan
+            Katalog Mobil Siap Jalan
           </h2>
         </div>
-        <p className="text-slate-600 text-xs sm:text-sm max-w-md">
-          Semua unit terawat rutin di bengkel resmi APM, wangi, ber-AC dingin, dan siap diantar langsung ke alamat Anda.
+        <p className="text-slate-600 text-xs sm:text-sm max-w-md leading-relaxed">
+          Semua unit terawat rutin di bengkel resmi APM, bersih steril, ber-AC dingin, dan siap diantar langsung ke lokasi Anda.
         </p>
       </div>
 
