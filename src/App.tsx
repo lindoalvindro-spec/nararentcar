@@ -72,8 +72,8 @@ export function App() {
         {/* Hero Section */}
         <Hero />
 
-        {/* Fleet & Filter Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 pt-8">
+        {/* Fleet & Filter Section with Spacing for Floating Booking Bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 pt-16 sm:pt-20">
           <QuickFilter
             filters={filters}
             onFilterChange={setFilters}

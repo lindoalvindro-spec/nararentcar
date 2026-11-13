@@ -64,28 +64,45 @@ export const Hero: React.FC<HeroProps> = () => {
   };
 
   return (
-    <section ref={heroRef} id="hero" className="bg-slate-950 text-white border-b border-slate-800 pt-10 pb-14 lg:pt-16 lg:pb-20 overflow-hidden relative">
-      {/* Subtle Background Lighting Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
+    <section 
+      ref={heroRef} 
+      id="hero" 
+      className="relative text-white pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-visible bg-slate-950 border-b border-slate-800/80"
+      style={{
+        background: 'radial-gradient(ellipse 90% 60% at 50% 0%, #0f172a 0%, #090d16 55%, #020617 100%)'
+      }}
+    >
+      {/* Subtle Technical Dot Grid Texture for Depth */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.06] -z-0"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.8) 1.2px, transparent 1.2px)',
+          backgroundSize: '24px 24px'
+        }}
+      />
+
+      {/* Atmospheric Showroom Spotlight Halos */}
+      <div className="absolute top-8 left-10 w-[480px] h-[480px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none -z-0" />
+      <div className="absolute top-12 right-12 w-[520px] h-[520px] bg-red-600/10 rounded-full blur-[130px] pointer-events-none -z-0" />
+      <div className="absolute bottom-16 left-1/3 w-[360px] h-[360px] bg-amber-400/8 rounded-full blur-[100px] pointer-events-none -z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main Hero Split Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pb-12 sm:pb-16">
           
           {/* Left Column: Bold Editorial Pitch */}
           <div className="lg:col-span-7 space-y-5 text-left">
             
-            <div className="hero-trust-tag inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-amber-500/30 text-amber-300 text-xs font-semibold shadow-xs">
+            <div className="hero-trust-tag inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/40 text-amber-300 text-xs font-semibold shadow-[0_0_15px_rgba(245,158,11,0.15)] backdrop-blur-md">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Rental Mobil Resmi Pekanbaru &bull; Siaga Antar Jemput SSK II</span>
             </div>
 
             <h1 className="hero-main-title font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.14]">
               Rental Mobil Terpercaya <br />
-              di <span className="text-amber-400">Pekanbaru & Riau.</span> <br />
-              <span className="text-slate-300 text-3xl sm:text-4xl lg:text-5xl font-bold">Prima, Wangi, Siap Melaju.</span>
+              di <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">Pekanbaru & Riau.</span> <br />
+              <span className="text-slate-200 text-3xl sm:text-4xl lg:text-5xl font-bold">Prima, Wangi, Siap Melaju.</span>
             </h1>
 
             <p className="hero-subtitle text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
@@ -109,14 +126,16 @@ export const Hero: React.FC<HeroProps> = () => {
 
           </div>
 
-          {/* Right Column: Studio Showcase Cutout */}
+          {/* Right Column: Studio Showcase Cutout with Illuminated Plinth */}
           <div ref={carWrapperRef} className="lg:col-span-5 flex flex-col items-center justify-center">
             <div className="relative w-full max-w-lg">
               
-              {/* Studio Stage Light & Ground Shadow */}
-              <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 rounded-3xl -z-10 shadow-2xl" />
-              
-              <div className="p-6 text-center">
+              {/* Studio Stage Light & Glassmorphism Box */}
+              <div className="rounded-3xl bg-gradient-to-b from-slate-900/90 via-slate-800/80 to-slate-900/95 border border-amber-500/30 p-6 text-center backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.6),0_0_25px_rgba(245,158,11,0.12)] relative overflow-hidden group">
+                
+                {/* Stage Corner Glow Accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+
                 {/* Stage Header Badge */}
                 <div className="flex items-center justify-between pb-3 mb-2 border-b border-slate-700/80 text-left">
                   <div className="flex items-center gap-2">
@@ -126,6 +145,7 @@ export const Hero: React.FC<HeroProps> = () => {
                   <span className="text-[11px] font-semibold text-slate-400">Siap Jalan</span>
                 </div>
 
+                {/* Studio Car with Illuminated Showroom Plinth */}
                 <div className="relative py-4 overflow-visible">
                   <img
                     src="/images/cars/zenix.png"
@@ -133,20 +153,24 @@ export const Hero: React.FC<HeroProps> = () => {
                     fetchPriority="high"
                     width={600}
                     height={338}
-                    className="hero-car-image w-full max-h-56 object-contain drop-shadow-2xl mx-auto transform hover:scale-102 transition-transform duration-300"
+                    className="hero-car-image w-full max-h-56 object-contain drop-shadow-2xl mx-auto transform group-hover:scale-103 transition-transform duration-300 relative z-10"
                   />
-                  {/* Studio floor shadow that animates in sync */}
-                  <div className="hero-car-shadow w-4/5 h-3 bg-black/60 blur-md rounded-full mx-auto -mt-2" />
+                  
+                  {/* Illuminated Plinth Light Beneath Wheels */}
+                  <div className="absolute -bottom-2 inset-x-0 w-3/4 h-8 bg-amber-400/20 blur-xl rounded-full mx-auto pointer-events-none" />
+                  
+                  {/* Studio floor grounded shadow that animates in sync */}
+                  <div className="hero-car-shadow w-4/5 h-3 bg-black/80 blur-xs rounded-full mx-auto -mt-2 relative z-0" />
                 </div>
 
-                <div className="flex items-center justify-between pt-3 border-t border-slate-700/80 text-left">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-3 border-t border-slate-700/80 text-left gap-2 sm:gap-4">
                   <div>
                     <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Armada VIP & Dinas</span>
-                    <span className="font-display font-extrabold text-white text-base">Toyota Innova Zenix 2.0 V</span>
+                    <span className="font-display font-extrabold text-white text-sm sm:text-base">Toyota Innova Zenix 2.0 V</span>
                   </div>
-                  <div className="text-right">
+                  <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2">
                     <span className="text-[11px] text-slate-400 block mb-0.5">Kondisi Kabin</span>
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-600/50">
+                    <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-950/70 px-2.5 py-1 rounded-md border border-emerald-500/50 shadow-xs">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Steril & Wangi</span>
                     </span>
@@ -159,8 +183,8 @@ export const Hero: React.FC<HeroProps> = () => {
 
         </div>
 
-        {/* Integrated Horizontal Booking Bar */}
-        <div className="hero-booking-bar bg-slate-900/90 backdrop-blur-md rounded-2xl shadow-2xl p-4 sm:p-5 text-white border border-slate-700/80">
+        {/* Integrated Floating Layered Booking Bar */}
+        <div className="hero-booking-bar bg-slate-900/95 backdrop-blur-xl rounded-2xl p-4 sm:p-5 text-white border border-slate-700/90 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(245,158,11,0.08)] -mb-8 sm:-mb-12 relative z-20">
           
           {/* Top Toggle: Service Type Tabs */}
           <div className="flex items-center gap-2 mb-4">
