@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Menu, X, ShieldCheck, MapPin, Sparkles } from 'lucide-react';
+import { Phone, Menu, X, ShieldCheck } from 'lucide-react';
 import { COMPANY_CONFIG } from '../config/rental';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 
@@ -16,32 +16,6 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full transition-all shadow-sm">
-      {/* Top Video-Inspired Marquee Announcement Strip */}
-      <div className="bg-red-900 text-white text-xs font-semibold py-2 px-4 border-b border-red-800">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-          <div className="flex items-center justify-center gap-2">
-            <span className="inline-flex items-center gap-1 bg-red-700/80 px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider text-amber-200">
-              <Sparkles className="w-3 h-3 text-amber-300" /> Siaga 24 Jam
-            </span>
-            <span className="text-white text-xs tracking-tight">
-              Selalu Siap Antar Jemput Anda di Pekanbaru & Bandara SSK II, Kapanpun dan Dimanapun!
-            </span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-4 text-[11px] text-amber-100">
-            <span className="flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-amber-400" /> Pekanbaru, Riau
-            </span>
-            <a
-              href={`tel:${COMPANY_CONFIG.phone}`}
-              className="hover:text-white font-bold transition-colors"
-            >
-              Hotline: {COMPANY_CONFIG.phone}
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <div className="bg-slate-950/95 backdrop-blur-md border-b border-slate-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
