@@ -75,7 +75,7 @@ export const Hero: React.FC<HeroProps> = () => {
             
             <div className="hero-trust-tag inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold">
               <ShieldCheck className="w-4 h-4 text-emerald-700" />
-              <span>Standar Unit Terawat & Bebas Biaya Tak Terduga</span>
+              <span>Standar Unit Bersih, Terawat & Bergaransi</span>
             </div>
 
             <h1 className="hero-main-title font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-[1.12]">
@@ -131,8 +131,11 @@ export const Hero: React.FC<HeroProps> = () => {
                     <span className="font-display font-extrabold text-slate-900 text-sm">Toyota Innova Zenix 2.0 V</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-[11px] text-slate-500 block">Mulai Dari</span>
-                    <span className="font-display font-extrabold text-emerald-700 text-sm">Rp 750.000 <span className="text-[10px] text-slate-500 font-normal">/hari</span></span>
+                    <span className="text-[11px] text-slate-500 block mb-0.5">Status Armada</span>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                      <span>Unit Siap Jalan</span>
+                    </span>
                   </div>
                 </div>
               </div>

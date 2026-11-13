@@ -121,12 +121,12 @@ export const Services: React.FC = () => {
 
             <div className="mt-8 pt-6 border-t border-slate-200 flex items-center justify-between">
               <div>
-                <span className="text-xs text-slate-500 block">Tarif Mulai Dari</span>
-                <span className="text-lg font-bold font-display text-slate-900">Rp 350.000 <span className="text-xs font-normal text-slate-500">/hari</span></span>
+                <span className="text-xs text-slate-500 block">Format Layanan</span>
+                <span className="text-sm font-bold font-display text-slate-900">Sewa 24 Jam Penuh</span>
               </div>
               <a
                 href="#armada"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm cursor-pointer"
               >
                 <span>Pilih Unit Lepas Kunci</span>
                 <ArrowRight className="w-4 h-4" />
@@ -175,16 +175,16 @@ export const Services: React.FC = () => {
 
             <div className="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between">
               <div>
-                <span className="text-xs text-slate-400 block">Tarif Mulai Dari</span>
-                <span className="text-lg font-bold font-display text-white">Rp 550.000 <span className="text-xs font-normal text-slate-400">/12 jam</span></span>
+                <span className="text-xs text-slate-400 block">Format Layanan</span>
+                <span className="text-sm font-bold font-display text-white">12 / 14 Jam Fleksibel</span>
               </div>
               <a
-                href={buildWhatsAppSupportUrl('Pesan Sewa Mobil Dengan Supir')}
+                href={buildWhatsAppSupportUrl('Sewa Mobil Dengan Supir')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm cursor-pointer"
               >
-                <span>Pesan Dengan Supir</span>
+                <span>Tanya Tarif via WA</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>

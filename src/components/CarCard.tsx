@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Users, Briefcase, Cog, Fuel, MessageCircle, Info } from 'lucide-react';
 import { Vehicle } from '../types/rental';
-import { formatCurrencyIDR } from '../utils/formatters';
 import { buildWhatsAppBookingUrl } from '../utils/whatsapp';
 
 interface CarCardProps {
@@ -37,8 +36,9 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
             <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-white text-slate-800 border border-slate-200 shadow-xs">
               {categoryNames[vehicle.category] || vehicle.category}
             </span>
-            <span className="text-[11px] font-bold text-slate-600 bg-white/80 px-2 py-0.5 rounded border border-slate-200">
-              {vehicle.year}
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-white/90 px-2 py-0.5 rounded border border-emerald-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+              <span>Unit Siap</span>
             </span>
           </div>
 
@@ -48,14 +48,17 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
               src={vehicle.image}
               alt={`Foto studio mobil ${vehicle.name}`}
               loading="lazy"
+              width={400}
+              height={250}
               className="w-full max-h-36 object-contain mx-auto transform group-hover:scale-104 transition-transform duration-300 drop-shadow-md"
             />
             {/* Ground shadow beneath car */}
             <div className="w-3/4 h-2 bg-slate-400/20 blur-xs rounded-full mx-auto -mt-1" />
           </div>
 
-          <div className="text-[11px] text-slate-500 font-medium">
-            Mesin: {vehicle.engineCapacity}
+          <div className="flex items-center justify-between text-[11px] text-slate-500 font-medium">
+            <span>Tahun {vehicle.year}</span>
+            <span>Mesin: {vehicle.engineCapacity}</span>
           </div>
         </div>
 
@@ -87,10 +90,10 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
             </div>
           </div>
 
-          {/* Dual Price Comparison Matrix */}
+          {/* Service Option Selector (No Price) */}
           <div className="pt-2 border-t border-slate-100">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-2">
-              Pilihan Tarif Harian:
+              Pilihan Skema Sewa:
             </span>
             <div className="grid grid-cols-2 gap-2">
               
@@ -98,44 +101,38 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
               <button
                 type="button"
                 onClick={() => setSelectedService('lepas-kunci')}
-                className={`p-2.5 rounded-xl text-left border transition-all ${
+                className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
                   selectedService === 'lepas-kunci'
                     ? 'bg-emerald-50/80 border-emerald-600 ring-1 ring-emerald-600 shadow-xs'
                     : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-[10px] font-bold text-slate-600">Lepas Kunci</span>
+                  <span className="text-xs font-bold text-slate-900 font-display">Lepas Kunci</span>
                   {selectedService === 'lepas-kunci' && (
                     <span className="w-2 h-2 rounded-full bg-emerald-600" />
                   )}
                 </div>
-                <div className="font-display text-sm font-extrabold text-slate-950">
-                  {formatCurrencyIDR(vehicle.priceWithoutDriver)}
-                </div>
-                <span className="text-[10px] text-slate-500">/ hari</span>
+                <span className="text-[10px] text-slate-500 block">Privasi Mandiri 24 Jam</span>
               </button>
 
               {/* Opsi Dengan Supir */}
               <button
                 type="button"
                 onClick={() => setSelectedService('dengan-supir')}
-                className={`p-2.5 rounded-xl text-left border transition-all ${
+                className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
                   selectedService === 'dengan-supir'
                     ? 'bg-emerald-50/80 border-emerald-600 ring-1 ring-emerald-600 shadow-xs'
                     : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-[10px] font-bold text-slate-600">+ Supir</span>
+                  <span className="text-xs font-bold text-slate-900 font-display">+ Supir</span>
                   {selectedService === 'dengan-supir' && (
                     <span className="w-2 h-2 rounded-full bg-emerald-600" />
                   )}
                 </div>
-                <div className="font-display text-sm font-extrabold text-slate-950">
-                  {formatCurrencyIDR(vehicle.priceWithDriver)}
-                </div>
-                <span className="text-[10px] text-slate-500">/ hari</span>
+                <span className="text-[10px] text-slate-500 block">Bebas Lelah & Macet</span>
               </button>
 
             </div>
@@ -148,19 +145,19 @@ export const CarCard: React.FC<CarCardProps> = ({ vehicle, onSelectDetail }) => 
         <button
           type="button"
           onClick={() => onSelectDetail(vehicle)}
-          className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs border border-slate-300 transition-colors text-center"
+          className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs border border-slate-300 transition-colors text-center cursor-pointer"
         >
           <Info className="w-3.5 h-3.5 text-slate-600" />
-          <span>Kalkulator</span>
+          <span>Detail Mobil</span>
         </button>
         <a
           href={whatsAppUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-display font-bold text-xs shadow-xs transition-colors text-center"
+          className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-display font-bold text-xs shadow-xs transition-colors text-center cursor-pointer"
         >
           <MessageCircle className="w-3.5 h-3.5 fill-white stroke-white" />
-          <span>Pesan ({selectedService === 'lepas-kunci' ? 'Lepas Kunci' : 'Supir'})</span>
+          <span>Tanya Tarif via WA</span>
         </a>
       </div>
 
