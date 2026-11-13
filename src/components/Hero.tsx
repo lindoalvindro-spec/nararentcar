@@ -20,38 +20,25 @@ export const Hero: React.FC<HeroProps> = () => {
 
   useGSAP(
     () => {
-      // Entrance Timeline: Precision Automotive Entrance
+      // Entrance Timeline: Precision Automotive Entrance (Locked Centering, Zero Horizontal Shift)
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       tl.fromTo('.hero-trust-tag', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 })
         .fromTo('.hero-main-title', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.55 }, '-=0.2')
         .fromTo('.hero-subtitle', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45 }, '-=0.3')
         .fromTo(
-          '.hero-car-image',
-          { opacity: 0, x: 90, scale: 0.94 },
-          { opacity: 1, x: 0, scale: 1, duration: 0.75, ease: 'power2.out' },
-          '-=0.35'
+          '.hero-car-stage-box',
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out' },
+          '-=0.3'
         )
         .fromTo(
-          '.hero-car-shadow',
-          { opacity: 0, scaleX: 0.6 },
-          { opacity: 1, scaleX: 1, duration: 0.65, ease: 'power2.out' },
-          '-=0.6'
+          '.hero-car-image',
+          { opacity: 0, scale: 0.94 },
+          { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' },
+          '-=0.45'
         )
         .fromTo('.hero-booking-bar', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
-
-      // ScrollTrigger Parallax on Car
-      if (carWrapperRef.current && heroRef.current) {
-        gsap.to('.hero-car-image', {
-          x: -28,
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.2,
-          },
-        });
-      }
     },
     { scope: heroRef }
   );
@@ -131,7 +118,7 @@ export const Hero: React.FC<HeroProps> = () => {
             <div className="relative w-full max-w-lg">
               
               {/* Studio Stage Light & Glassmorphism Box */}
-              <div className="rounded-3xl bg-gradient-to-b from-slate-900/90 via-slate-800/80 to-slate-900/95 border border-amber-500/30 p-6 text-center backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.6),0_0_25px_rgba(245,158,11,0.12)] relative overflow-hidden group">
+              <div className="hero-car-stage-box rounded-3xl bg-gradient-to-b from-slate-900/90 via-slate-800/80 to-slate-900/95 border border-amber-500/30 p-6 text-center backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.6),0_0_25px_rgba(245,158,11,0.12)] relative overflow-hidden">
                 
                 {/* Stage Corner Glow Accent */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -145,22 +132,22 @@ export const Hero: React.FC<HeroProps> = () => {
                   <span className="text-[11px] font-semibold text-slate-400">Siap Jalan</span>
                 </div>
 
-                {/* Studio Car with Illuminated Showroom Plinth */}
-                <div className="relative py-4 overflow-visible">
+                {/* Studio Car with Clean Symmetrical Ground Shadow */}
+                <div className="relative py-4 flex flex-col items-center justify-center overflow-visible">
                   <img
                     src="/images/cars/zenix.png"
                     alt="Toyota Innova Zenix Showcase Nara Rent Car"
                     fetchPriority="high"
                     width={600}
                     height={338}
-                    className="hero-car-image w-full max-h-56 object-contain drop-shadow-2xl mx-auto transform group-hover:scale-103 transition-transform duration-300 relative z-10"
+                    className="hero-car-image w-full max-h-56 sm:max-h-60 object-contain drop-shadow-2xl mx-auto relative z-10 select-none"
                   />
                   
-                  {/* Illuminated Plinth Light Beneath Wheels */}
-                  <div className="absolute -bottom-2 inset-x-0 w-3/4 h-8 bg-amber-400/20 blur-xl rounded-full mx-auto pointer-events-none" />
+                  {/* Subtle Showroom Ambient Floor Glow */}
+                  <div className="absolute -bottom-1 inset-x-0 w-3/4 h-8 bg-amber-400/20 blur-xl rounded-full mx-auto pointer-events-none -z-0" />
                   
-                  {/* Studio floor grounded shadow that animates in sync */}
-                  <div className="hero-car-shadow w-4/5 h-3 bg-black/80 blur-xs rounded-full mx-auto -mt-2 relative z-0" />
+                  {/* Natural Ground Contact Shadow under tires */}
+                  <div className="w-[82%] h-4 bg-gradient-to-r from-transparent via-black/80 to-transparent blur-xs rounded-full mx-auto -mt-2.5 relative z-0 pointer-events-none" />
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-3 border-t border-slate-700/80 text-left gap-2 sm:gap-4">
