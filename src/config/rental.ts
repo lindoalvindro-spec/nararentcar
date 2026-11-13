@@ -1,13 +1,13 @@
 import { RentalCompanyConfig } from '../types/rental';
 
 export const COMPANY_CONFIG: RentalCompanyConfig = {
-  name: 'RentCar Nusantara',
-  tagline: 'Solusi Sewa Mobil Prima, Cepat & Terpercaya',
-  phone: '+62 812-8899-7700',
-  whatsappNumber: '6281288997700',
-  email: 'halo@rentcarnusantara.com',
-  address: 'Jl. Boulevard Raya No. 88, Kebayoran Baru',
-  city: 'Jakarta Selatan, DKI Jakarta 12150',
-  operatingHours: '24 Jam Setiap Hari (Layanan CS & Darurat)',
-  instagram: '@rentcar.nusantara',
+  name: 'Nara Rent Car',
+  tagline: 'Your Trusted Car Rental Partner',
+  phone: '+62 812-7588-9900',
+  whatsappNumber: '6281275889900',
+  email: 'admin@nararentcarpekanbaru.com',
+  address: 'Jl. Arifin Ahmad No. 88, Marpoyan Damai',
+  city: 'Kota Pekanbaru, Riau 28282',
+  operatingHours: '24 Jam Setiap Hari (Siaga Antar Jemput Bandara SSK II)',
+  instagram: '@nararentcar.pekanbaru',
 };

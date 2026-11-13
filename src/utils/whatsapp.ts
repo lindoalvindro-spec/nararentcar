@@ -3,22 +3,28 @@ import { Vehicle } from '../types/rental';
 
 export interface BookingMessageParams {
   vehicle: Vehicle;
-  serviceType?: 'lepas-kunci' | 'dengan-supir';
+  serviceType?: 'lepas-kunci' | 'all-in-12jam' | 'dengan-supir';
   startDate?: string;
   notes?: string;
 }
 
 /**
- * Generate a WhatsApp click-to-chat URL with pre-filled short message without price
+ * Generate a WhatsApp click-to-chat URL tailored for Nara Rent Car Pekanbaru
  */
 export function buildWhatsAppBookingUrl(params: BookingMessageParams): string {
   const { vehicle, serviceType, startDate, notes } = params;
   
-  let message = `Halo Admin, boleh info tarif dan ketersediaan untuk mobil ${vehicle.name}?`;
+  const packageLabel = serviceType === 'all-in-12jam' 
+    ? 'Paket All-In 12 Jam (Mobil + Driver + BBM + Parkir)'
+    : serviceType === 'dengan-supir'
+    ? 'Dengan Supir'
+    : 'Lepas Kunci (24 Jam)';
+
+  let message = `Halo Admin Nara Rent Car Pekanbaru, saya ingin reservasi/tanya tarif untuk unit ${vehicle.name}.`;
   
   const extras: string[] = [];
   if (serviceType) {
-    extras.push(`Opsi: ${serviceType === 'lepas-kunci' ? 'Lepas Kunci' : 'Dengan Supir'}`);
+    extras.push(`Skema: ${packageLabel}`);
   }
   if (startDate) {
     extras.push(`Tanggal: ${startDate}`);
@@ -31,13 +37,15 @@ export function buildWhatsAppBookingUrl(params: BookingMessageParams): string {
     message += ` (${extras.join(', ')})`;
   }
 
+  message += '. Boleh info ketersediaan unit dan penawaran terbaiknya? Terima kasih!';
+
   return `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 /**
  * Generate a general CS inquiry WhatsApp URL
  */
-export function buildWhatsAppSupportUrl(topic = 'Informasi Umum'): string {
-  const message = `Halo Admin, boleh info tarif dan ketersediaan untuk ${topic}? Terima kasih.`;
+export function buildWhatsAppSupportUrl(topic = 'Konsultasi Sewa Mobil Pekanbaru'): string {
+  const message = `Halo Admin Nara Rent Car Pekanbaru, saya ingin konsultasi mengenai ${topic}. Boleh dibantu informasinya? Terima kasih.`;
   return `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }

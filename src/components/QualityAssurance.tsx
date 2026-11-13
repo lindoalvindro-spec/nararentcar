@@ -131,7 +131,7 @@ export const QualityAssurance: React.FC = () => {
                 Layanan Darurat 24 Jam (Emergency Roadside Assistance)
               </h4>
               <p className="text-xs text-slate-400 mt-0.5">
-                Tim teknisi darurat dan derek rekanan kami siaga mendampingi Anda di wilayah Jabodetabek dan sekitarnya.
+                Tim teknisi darurat dan derek rekanan kami siaga mendampingi Anda di wilayah Kota Pekanbaru dan seluruh jalur lintas Riau sekitarnya.
               </p>
             </div>
           </div>

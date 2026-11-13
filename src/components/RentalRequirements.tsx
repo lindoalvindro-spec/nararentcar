@@ -122,19 +122,19 @@ export const RentalRequirements: React.FC = () => {
   }[] = [
     {
       id: 'domisili',
-      label: 'Domisili Jabodetabek',
-      sublabel: 'KTP & Bukti Tinggal',
+      label: 'Domisili Pekanbaru / Riau',
+      sublabel: 'KTP & Bukti Domisili',
       icon: User,
     },
     {
       id: 'wisatawan',
-      label: 'Wisatawan / Luar Kota',
+      label: 'Wisatawan / Tamu SSK II',
       sublabel: 'Tiket PP & Reservasi Hotel',
       icon: Plane,
     },
     {
       id: 'perusahaan',
-      label: 'Instansi & Korporasi',
+      label: 'Instansi & Korporasi Riau',
       sublabel: 'NIB, NPWP & PO Resmi',
       icon: Building,
     },
@@ -158,9 +158,9 @@ export const RentalRequirements: React.FC = () => {
     {
       num: '03',
       title: 'Serah Terima & Cek Fisik Unit',
-      sla: 'Antar ke Lokasi Anda',
+      sla: 'Antar ke Bandara SSK II / Lokasi Anda',
       slaColor: 'bg-blue-50 text-blue-800 border-blue-200',
-      desc: 'Mobil diantar tepat waktu ke alamat, bandara, atau stasiun. Cek fisik bersama petugas dan tanda tangani formulir.',
+      desc: 'Mobil diantar tepat waktu ke Bandara SSK II, hotel penginapan, atau alamat Anda di Pekanbaru. Cek fisik bersama dan serah terima kunci.',
     },
     {
       num: '04',
@@ -600,10 +600,10 @@ export const RentalRequirements: React.FC = () => {
             {/* Bottom Action Area */}
             <div className="mt-6 pt-5 border-t border-slate-100 space-y-2.5">
               <a
-                href={buildWhatsAppSupportUrl('Halo Admin, Saya Ingin Mulai Booking Unit')}
+                href={buildWhatsAppSupportUrl('Mulai Booking Unit Nara Rent Car Pekanbaru')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold font-display text-xs sm:text-sm transition-colors shadow-sm cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold font-display text-xs sm:text-sm transition-all shadow-md shadow-red-900/30 border border-red-600/40 cursor-pointer"
               >
                 <span>Mulai Booking via WhatsApp</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.2]" />

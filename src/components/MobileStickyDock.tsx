@@ -83,10 +83,10 @@ export const MobileStickyDock: React.FC<MobileStickyDockProps> = ({ totalVehicle
 
         {/* Right Side: Direct WhatsApp Action */}
         <a
-          href={buildWhatsAppSupportUrl('Booking Mobil Hari Ini')}
+          href={buildWhatsAppSupportUrl('Booking Mobil Nara Rent Car Pekanbaru')}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold font-display text-xs shadow-md shadow-emerald-700/20 transition-all cursor-pointer min-h-[44px]"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 active:scale-95 text-white font-bold font-display text-xs shadow-md shadow-red-900/30 transition-all cursor-pointer min-h-[44px] border border-red-600/40"
         >
           <MessageCircle className="w-4 h-4 fill-white stroke-white" />
           <span>Pesan via WA</span>

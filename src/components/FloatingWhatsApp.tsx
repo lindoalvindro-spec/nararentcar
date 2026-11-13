@@ -35,9 +35,9 @@ export const FloatingWhatsApp: React.FC = () => {
     },
     {
       icon: Plane,
-      title: 'Antar Jemput Bandara',
-      desc: 'Reservasi penjemputan Soetta / Halim',
-      topic: 'Antar Jemput Bandara CGK / HLP',
+      title: 'Antar Jemput Bandara SSK II',
+      desc: 'Reservasi penjemputan Bandara SSK II Pekanbaru',
+      topic: 'Antar Jemput Bandara SSK II Pekanbaru',
     },
     {
       icon: Headphones,

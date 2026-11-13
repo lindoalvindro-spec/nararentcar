@@ -144,9 +144,9 @@ export const FAQ: React.FC = () => {
         {/* Editorial Section Header */}
         <div className="faq-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-wider mb-3">
-              <HelpCircle className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Tanya Jawab Seputar Layanan</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
+              <HelpCircle className="w-3.5 h-3.5 text-amber-700" />
+              <span>Tanya Jawab Seputar Layanan Pekanbaru</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-display tracking-tight">
               Pertanyaan yang Sering Diajukan
@@ -180,10 +180,10 @@ export const FAQ: React.FC = () => {
             </p>
           </div>
           <a
-            href={buildWhatsAppSupportUrl('Pertanyaan Khusus Seputar Sewa Mobil')}
+            href={buildWhatsAppSupportUrl('Pertanyaan Khusus Seputar Sewa Mobil Nara Pekanbaru')}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-sm transition-colors flex-shrink-0 cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-900/30 transition-all flex-shrink-0 cursor-pointer border border-red-600/40"
           >
             <MessageSquare className="w-4 h-4" />
             <span>Tanya Admin via WhatsApp</span>

@@ -228,7 +228,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({ vehicle, onClose
                 type="text"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Contoh: Titik jemput Bandara Soetta Terminal 3, sewa 3 hari..."
+                placeholder="Contoh: Titik jemput Bandara SSK II Pekanbaru, antar ke hotel..."
                 className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs focus:ring-1 focus:ring-emerald-600 focus:outline-none"
               />
             </div>
@@ -253,7 +253,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({ vehicle, onClose
               href={whatsAppBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold font-display text-xs shadow-sm transition-colors cursor-pointer"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold font-display text-xs shadow-md shadow-red-900/30 transition-all cursor-pointer border border-red-600/40"
             >
               <MessageCircle className="w-4 h-4 fill-white stroke-white" />
               <span>Tanya Tarif via WhatsApp</span>
