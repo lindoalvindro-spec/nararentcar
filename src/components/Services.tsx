@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Key, UserCheck, Plane, HeartHandshake, Bus, Building2, Check, ArrowRight, Sparkles } from 'lucide-react';
+import { Key, UserCheck, Check, ArrowRight, Sparkles } from 'lucide-react';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -54,33 +54,6 @@ export const Services: React.FC = () => {
       title: 'Layanan Antar-Jemput Gratis',
       desc: 'Fasilitas penjemputan dan pengantaran unit tepat waktu di Bandara Internasional Sultan Syarif Kasim II (SSK II), hotel ternama, maupun stasiun di Pekanbaru.',
       badge: 'Bebas Ongkir Bandara SSK II',
-    },
-  ];
-
-  const specializedServices = [
-    {
-      icon: Plane,
-      title: 'Antar-Jemput Bandara SSK II',
-      desc: 'Penjemputan tepat waktu dengan pemantauan jadwal landing pesawat di Bandara Sultan Syarif Kasim II Pekanbaru.',
-      badge: 'Siaga Penerbangan',
-    },
-    {
-      icon: Building2,
-      title: 'Perjalanan Dinas Kantor & BUMN',
-      desc: 'Dukungan transportasi resmi untuk tamu instansi pemerintah, BUMN, perbankan, dan perusahaan perkebunan/migas di Riau.',
-      badge: 'Invoice & Kwitansi Resmi',
-    },
-    {
-      icon: Bus,
-      title: 'Wisata Lintas Riau (HiAce 12 Seat)',
-      desc: 'Kapasitas rombongan untuk tour budaya Istana Siak Sri Indrapura, Candi Muara Takus Kampar, dan kuliner khas Melayu Riau.',
-      badge: 'Kapasitas Rombongan',
-    },
-    {
-      icon: HeartHandshake,
-      title: 'Mobil VIP & Pernikahan (Alphard & Zenix)',
-      desc: 'Armada eksekutif bernuansa mewah dengan opsi dekorasi khusus dan pengemudi berbusana formal untuk momen istimewa Anda.',
-      badge: 'Layanan VIP Eksklusif',
     },
   ];
 
@@ -255,40 +228,6 @@ export const Services: React.FC = () => {
             </div>
           </div>
 
-        </div>
-
-        {/* Specialized Secondary Services Grid */}
-        <div className="service-header mb-6">
-          <h3 className="text-lg sm:text-xl font-bold font-display text-slate-900">
-            Layanan Khusus & Rute Tambahan di Riau
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {specializedServices.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={index}
-                className="service-item-row p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-amber-100/80 text-amber-900 flex items-center justify-center">
-                    <Icon className="w-5 h-5 stroke-[2]" />
-                  </div>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200/80 text-slate-700">
-                    {item.badge}
-                  </span>
-                </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1 font-display">
-                  {item.title}
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            );
-          })}
         </div>
 
       </div>

@@ -11,7 +11,6 @@ export const Navbar: React.FC = () => {
     { label: 'Paket Layanan', href: '#layanan' },
     { label: 'Syarat Sewa', href: '#syarat' },
     { label: 'Standar Mutu', href: '#mutu' },
-    { label: 'Tanya Jawab', href: '#faq' },
   ];
 
   return (

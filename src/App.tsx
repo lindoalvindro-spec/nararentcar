@@ -7,7 +7,6 @@ import { CarDetailModal } from './components/CarDetailModal';
 import { Services } from './components/Services';
 import { RentalRequirements } from './components/RentalRequirements';
 import { QualityAssurance } from './components/QualityAssurance';
-import { FAQ } from './components/FAQ';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { MobileStickyDock } from './components/MobileStickyDock';
 import { Footer } from './components/Footer';
@@ -95,9 +94,6 @@ export function App() {
 
         {/* Quality Assurance & Guarantees (Anti-slop R-18 & R-36 compliant) */}
         <QualityAssurance />
-
-        {/* Accessible FAQ Accordion */}
-        <FAQ />
       </main>
 
       {/* Corporate Footer */}
