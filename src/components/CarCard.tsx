@@ -21,11 +21,19 @@ export const CarCard: React.FC<CarCardProps> = ({
       
       <div>
         {/* Studio Stage Header with Corner Ribbon Badge */}
-        <div className="relative aspect-[16/10] bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 p-4 flex flex-col justify-between overflow-hidden border-b border-slate-800/80">
+        <div className="relative aspect-[16/10] bg-slate-950 p-4 flex flex-col justify-between overflow-hidden border-b border-slate-800/80">
           
-          {/* Subtle Showroom Spotlight behind vehicle */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
-          
+          {/* Studio Photography Full Stage */}
+          <img
+            src={vehicle.image}
+            alt={`Foto armada ${vehicle.name} Nara Rent Car Pekanbaru`}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
+
+          {/* Cinematic lighting vignette & top/bottom scrims for clear contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/70 pointer-events-none" />
+
           {/* Top Video-Inspired Ribbon & Status Row */}
           <div className="flex items-center justify-between z-10">
             {/* Corner Ribbon "PILIHAN ARMADA" */}
@@ -37,30 +45,16 @@ export const CarCard: React.FC<CarCardProps> = ({
             </div>
 
             {/* Availability Badge */}
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-200 bg-slate-800/90 px-2.5 py-1 rounded-md border border-slate-700 shadow-xs backdrop-blur-xs">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-100 bg-slate-950/80 px-2.5 py-1 rounded-md border border-slate-700/80 shadow-md backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Unit Siap Jalan</span>
             </span>
           </div>
 
-          {/* Clean Studio Cutout Image */}
-          <div className="relative my-auto flex items-center justify-center py-2">
-            <img
-              src={vehicle.image}
-              alt={`Foto armada ${vehicle.name} Nara Rent Car Pekanbaru`}
-              loading="lazy"
-              width={400}
-              height={240}
-              className="w-full max-h-32 sm:max-h-36 object-contain mx-auto transform group-hover:scale-105 transition-transform duration-300 drop-shadow-2xl"
-            />
-            {/* Ground shadow beneath car */}
-            <div className="absolute -bottom-1 w-4/5 h-3 bg-black/60 blur-xs rounded-full -z-10" />
-          </div>
-
           {/* Bottom Metabar */}
-          <div className="flex items-center justify-between text-[11px] text-slate-400 font-semibold z-10">
-            <span>Tahun {vehicle.year}</span>
-            <span>Mesin: {vehicle.engineCapacity}</span>
+          <div className="flex items-center justify-between text-[11px] text-slate-300 font-semibold z-10 drop-shadow-md">
+            <span className="bg-slate-950/70 px-2 py-0.5 rounded backdrop-blur-xs border border-slate-800/50">Tahun {vehicle.year}</span>
+            <span className="bg-slate-950/70 px-2 py-0.5 rounded backdrop-blur-xs border border-slate-800/50">Mesin: {vehicle.engineCapacity}</span>
           </div>
         </div>
 

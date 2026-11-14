@@ -2,6 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin, Clock, ShieldCheck, Sparkles } from 'lucide-react';
 import { COMPANY_CONFIG } from '../config/rental';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
+import { InstagramIcon, FacebookIcon } from './SocialIcons';
 
 export const Footer: React.FC = () => {
   return (
@@ -35,8 +36,36 @@ export const Footer: React.FC = () => {
             </p>
 
             <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold pt-1">
-              <ShieldCheck className="w-4 h-4 text-amber-400" />
+              <ShieldCheck className="w-4 h-4 text-amber-400 flex-shrink-0" />
               <span>Unit Tahun Muda (2022-2024) &bull; Supir Santun &amp; Terawat Bengkel Resmi</span>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="flex items-center gap-2.5 pt-2">
+              {COMPANY_CONFIG.instagram && (
+                <a
+                  href={COMPANY_CONFIG.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-gradient-to-r hover:from-amber-600 hover:to-pink-600 text-slate-200 hover:text-white border border-slate-800 text-xs font-semibold transition-all shadow-sm group"
+                  aria-label="Instagram Resmi Nara Rent Car"
+                >
+                  <InstagramIcon className="w-4 h-4 text-pink-400 group-hover:text-white transition-colors" />
+                  <span>Instagram Resmi</span>
+                </a>
+              )}
+              {COMPANY_CONFIG.facebook && (
+                <a
+                  href={COMPANY_CONFIG.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-200 hover:text-white border border-slate-800 text-xs font-semibold transition-all shadow-sm group"
+                  aria-label="Facebook Resmi Nara Rent Car"
+                >
+                  <FacebookIcon className="w-4 h-4 text-blue-400 group-hover:text-white transition-colors" />
+                  <span>Facebook Resmi</span>
+                </a>
+              )}
             </div>
           </div>
 

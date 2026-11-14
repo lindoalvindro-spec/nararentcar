@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Menu, X, ShieldCheck } from 'lucide-react';
 import { COMPANY_CONFIG } from '../config/rental';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
+import { InstagramIcon, FacebookIcon } from './SocialIcons';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -54,13 +55,37 @@ export const Navbar: React.FC = () => {
               ))}
             </nav>
 
-            {/* Action Button */}
-            <div className="hidden sm:flex items-center gap-4">
+            {/* Action Buttons & Social Links */}
+            <div className="hidden sm:flex items-center gap-2.5">
+              {COMPANY_CONFIG.instagram && (
+                <a
+                  href={COMPANY_CONFIG.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900/90 hover:bg-gradient-to-tr hover:from-amber-600 hover:to-pink-600 text-slate-300 hover:text-white border border-slate-800 transition-all shadow-sm"
+                  aria-label="Instagram Nara Rent Car Pekanbaru"
+                  title="Instagram Resmi @rentalmobilpku_nararentcar"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                </a>
+              )}
+              {COMPANY_CONFIG.facebook && (
+                <a
+                  href={COMPANY_CONFIG.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-slate-800 transition-all shadow-sm"
+                  aria-label="Facebook Nara Rent Car Pekanbaru"
+                  title="Facebook Resmi Nara Rent Car"
+                >
+                  <FacebookIcon className="w-4 h-4" />
+                </a>
+              )}
               <a
                 href={buildWhatsAppSupportUrl('Konsultasi Sewa Mobil Pekanbaru')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold font-display text-xs sm:text-sm transition-all shadow-md shadow-red-950/50 border border-red-500/40 cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold font-display text-xs sm:text-sm transition-all shadow-md shadow-red-950/50 border border-red-500/40 cursor-pointer ml-1"
                 aria-label="Hubungi Customer Service via WhatsApp"
               >
                 <Phone className="w-4 h-4 stroke-[2.2]" />
@@ -69,15 +94,37 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* Mobile Hamburger Toggle */}
-            <div className="flex md:hidden">
+            <div className="flex md:hidden items-center gap-2">
+              {COMPANY_CONFIG.instagram && (
+                <a
+                  href={COMPANY_CONFIG.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900 text-slate-300 hover:text-white border border-slate-800"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                </a>
+              )}
+              {COMPANY_CONFIG.facebook && (
+                <a
+                  href={COMPANY_CONFIG.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900 text-slate-300 hover:text-white border border-slate-800"
+                  aria-label="Facebook"
+                >
+                  <FacebookIcon className="w-4 h-4" />
+                </a>
+              )}
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 transition-colors cursor-pointer"
+                className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 transition-colors cursor-pointer"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Buka menu navigasi"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
 
@@ -97,7 +144,7 @@ export const Navbar: React.FC = () => {
                 {link.label}
               </a>
             ))}
-            <div className="pt-3">
+            <div className="pt-3 space-y-2">
               <a
                 href={buildWhatsAppSupportUrl('Konsultasi Sewa Mobil Pekanbaru')}
                 target="_blank"
@@ -107,6 +154,30 @@ export const Navbar: React.FC = () => {
                 <Phone className="w-4 h-4 stroke-[2.2]" />
                 <span>Hubungi CS via WhatsApp</span>
               </a>
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                {COMPANY_CONFIG.instagram && (
+                  <a
+                    href={COMPANY_CONFIG.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700"
+                  >
+                    <InstagramIcon className="w-4 h-4 text-pink-400" />
+                    <span>Instagram</span>
+                  </a>
+                )}
+                {COMPANY_CONFIG.facebook && (
+                  <a
+                    href={COMPANY_CONFIG.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700"
+                  >
+                    <FacebookIcon className="w-4 h-4 text-blue-400" />
+                    <span>Facebook</span>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         )}

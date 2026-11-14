@@ -70,4 +70,5 @@ export interface RentalCompanyConfig {
   city: string;
   operatingHours: string;
   instagram: string;
+  facebook?: string;
 }
