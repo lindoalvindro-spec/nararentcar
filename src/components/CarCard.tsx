@@ -1,17 +1,16 @@
 import React from 'react';
-import { Users, Briefcase, Cog, Fuel, MessageCircle, Info, Check, Sparkles } from 'lucide-react';
+import { Users, Briefcase, Cog, Fuel, MessageCircle, Check, Sparkles } from 'lucide-react';
 import { Vehicle } from '../types/rental';
 import { buildWhatsAppBookingUrl } from '../utils/whatsapp';
 import { formatIDR } from '../utils/formatters';
 
 interface CarCardProps {
   vehicle: Vehicle;
-  onSelectDetail: (vehicle: Vehicle) => void;
+  onSelectDetail?: (vehicle: Vehicle) => void;
 }
 
 export const CarCard: React.FC<CarCardProps> = ({ 
   vehicle, 
-  onSelectDetail,
 }) => {
   const whatsAppUrl = buildWhatsAppBookingUrl({
     vehicle,
@@ -131,24 +130,16 @@ export const CarCard: React.FC<CarCardProps> = ({
         </div>
       </div>
 
-      {/* Action Buttons & Bottom Video Pillars */}
+      {/* Action Button & Bottom Video Pillars */}
       <div>
-        <div className="px-5 pb-3 grid grid-cols-2 gap-2">
-          <button
-            type="button"
-            onClick={() => onSelectDetail(vehicle)}
-            className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition-colors text-center cursor-pointer"
-          >
-            <Info className="w-3.5 h-3.5 text-slate-400" />
-            <span>Detail Mobil</span>
-          </button>
+        <div className="px-5 pb-3">
           <a
             href={whatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-display font-extrabold text-xs shadow-md shadow-red-950/50 transition-all text-center cursor-pointer border border-red-500/40"
+            className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-display font-extrabold text-xs sm:text-sm shadow-md shadow-red-950/50 transition-all text-center cursor-pointer border border-red-500/40 active:scale-98"
           >
-            <MessageCircle className="w-3.5 h-3.5 fill-white stroke-white" />
+            <MessageCircle className="w-4 h-4 fill-white stroke-white" />
             <span>Booking Sekarang</span>
           </a>
         </div>
