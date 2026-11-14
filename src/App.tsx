@@ -4,7 +4,6 @@ import { Hero } from './components/Hero';
 import { QuickFilter } from './components/QuickFilter';
 import { FleetShowcase } from './components/FleetShowcase';
 import { CarDetailModal } from './components/CarDetailModal';
-import { Services } from './components/Services';
 import { RentalRequirements } from './components/RentalRequirements';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { MobileStickyDock } from './components/MobileStickyDock';
@@ -85,10 +84,7 @@ export function App() {
           />
         </div>
 
-        {/* Service Packages (Focused All-In & Rute Riau) */}
-        <Services />
-
-        {/* Requirements & Jaminan Keamanan Data */}
+        {/* Jaminan Keamanan & Kerahasiaan Data (Customer Privacy & Zero Deposit) */}
         <RentalRequirements />
       </main>
 
