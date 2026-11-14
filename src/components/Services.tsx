@@ -34,7 +34,7 @@ export const Services: React.FC = () => {
     {
       num: '01',
       title: 'Mobil Terawat dan Prima',
-      desc: 'Seluruh armada keluaran tahun muda (2022-2024) yang menjalani perawatan berkala di bengkel resmi APM. Kabin dijamin bersih wangi, bebas bau rokok, dan AC dingin maksimal.',
+      desc: 'Seluruh armada prima yang menjalani perawatan berkala di bengkel resmi APM. Kabin dijamin bersih wangi, bebas bau rokok, dan AC dingin maksimal.',
       badge: 'Standar Bengkel Resmi',
     },
     {

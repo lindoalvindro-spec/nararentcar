@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
 
             <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold pt-1">
               <ShieldCheck className="w-4 h-4 text-amber-400 flex-shrink-0" />
-              <span>Unit Tahun Muda (2022-2024) &bull; Supir Santun &amp; Terawat Bengkel Resmi</span>
+              <span>Armada Prima &amp; Terawat &bull; Supir Santun Bengkel Resmi</span>
             </div>
 
             {/* Social Media Links */}

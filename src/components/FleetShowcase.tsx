@@ -53,7 +53,7 @@ export const FleetShowcase: React.FC<FleetShowcaseProps> = ({
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-2.5">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Pilihan Unit Tahun 2022 - 2024</span>
+            <span>Pilihan Unit Armada Prima</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display tracking-tight">
             Katalog Armada Mobil Siap Jalan

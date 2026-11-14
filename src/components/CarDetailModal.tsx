@@ -80,7 +80,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({ vehicle, onClose
               {vehicle.name}
             </h3>
             <span className="text-xs px-2.5 py-0.5 rounded-md bg-amber-500/10 text-amber-300 font-semibold border border-amber-500/30">
-              Tahun {vehicle.year}
+              Unit Prima
             </span>
           </div>
           <button

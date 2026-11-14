@@ -5,7 +5,7 @@ export const FAQS_DATA: FAQItem[] = [
     id: 'faq-1',
     category: 'terms',
     question: 'Apa saja fasilitas yang termasuk dalam Paket All-In 12 Jam di Nara Rent Car?',
-    answer: 'Paket All-In 12 Jam kami sudah mencakup: unit mobil prima tahun muda (2022-2024), supir berpengalaman yang santun dan profesional, serta bahan bakar minyak (BBM) untuk pemakaian rute dalam kota Pekanbaru. Biaya yang di luar paket hanya retribusi parkir dan tol.',
+    answer: 'Paket All-In 12 Jam kami sudah mencakup: unit mobil prima dan terawat, supir berpengalaman yang santun dan profesional, serta bahan bakar minyak (BBM) untuk pemakaian rute dalam kota Pekanbaru. Biaya yang di luar paket hanya retribusi parkir dan tol.',
   },
   {
     id: 'faq-2',

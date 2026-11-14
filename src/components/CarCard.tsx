@@ -50,12 +50,6 @@ export const CarCard: React.FC<CarCardProps> = ({
               <span>Unit Siap Jalan</span>
             </span>
           </div>
-
-          {/* Bottom Metabar */}
-          <div className="flex items-center justify-between text-[11px] text-slate-300 font-semibold z-10 drop-shadow-md">
-            <span className="bg-slate-950/70 px-2 py-0.5 rounded backdrop-blur-xs border border-slate-800/50">Tahun {vehicle.year}</span>
-            <span className="bg-slate-950/70 px-2 py-0.5 rounded backdrop-blur-xs border border-slate-800/50">Mesin: {vehicle.engineCapacity}</span>
-          </div>
         </div>
 
         {/* Vehicle Identity & Content */}

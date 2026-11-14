@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
             </h1>
 
             <p className="hero-subtitle text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-              Solusi mobilitas andalan instansi dinas, tamu BUMN, dan keluarga di Pekanbaru. Pilihan armada tahun muda 2022-2024 dengan perawatan bengkel resmi, supir profesional yang santun, serta gratis antar jemput di Bandara Sultan Syarif Kasim II.
+              Solusi mobilitas andalan instansi dinas, tamu BUMN, dan keluarga di Pekanbaru. Pilihan armada prima dengan perawatan bengkel resmi, supir profesional yang santun, serta gratis antar jemput di Bandara Sultan Syarif Kasim II.
             </p>
 
           </div>
