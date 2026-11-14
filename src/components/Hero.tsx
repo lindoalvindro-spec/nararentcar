@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ArrowRight, ShieldCheck, MapPin, Calendar, CheckCircle, Sparkles, UserCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck, MapPin, Calendar, Sparkles, UserCheck } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -90,21 +90,6 @@ export const Hero: React.FC = () => {
             <p className="hero-subtitle text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
               Solusi mobilitas andalan instansi dinas, tamu BUMN, dan keluarga di Pekanbaru. Pilihan armada tahun muda 2022-2024 dengan perawatan bengkel resmi, supir profesional yang santun, serta gratis antar jemput di Bandara Sultan Syarif Kasim II.
             </p>
-
-            <div className="flex flex-wrap items-center gap-y-2.5 gap-x-6 pt-1 text-xs text-slate-300 font-semibold">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-emerald-400" />
-                <span>Unit Tahun Muda (2022-2024)</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-emerald-400" />
-                <span>Gratis Antar Jemput Bandara SSK II</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-emerald-400" />
-                <span>Driver Berpengalaman & Hapal Rute</span>
-              </div>
-            </div>
 
           </div>
 
