@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { label: 'Pilihan Armada', href: '#armada' },
     { label: 'Paket Layanan', href: '#layanan' },
-    { label: 'Syarat & Keamanan Data', href: '#syarat' },
+    { label: 'Keamanan Data', href: '#keamanan' },
   ];
 
   return (
