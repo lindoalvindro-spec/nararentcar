@@ -1,17 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { ArrowRight, ShieldCheck, MapPin, Calendar, CheckCircle, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, MapPin, Calendar, CheckCircle, Sparkles, UserCheck } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-interface HeroProps {
-  onSearchSubmit?: (serviceType: 'lepas-kunci' | 'dengan-supir', location: string) => void;
-}
-
-export const Hero: React.FC<HeroProps> = () => {
-  const [serviceType, setServiceType] = useState<'lepas-kunci' | 'dengan-supir'>('lepas-kunci');
+export const Hero: React.FC = () => {
   const [location, setLocation] = useState('Bandara Internasional Sultan Syarif Kasim II (SSK II)');
   const [rentalDate, setRentalDate] = useState(new Date().toISOString().split('T')[0]);
 
@@ -20,7 +15,7 @@ export const Hero: React.FC<HeroProps> = () => {
 
   useGSAP(
     () => {
-      // Entrance Timeline: Precision Automotive Entrance (Locked Centering, Zero Horizontal Shift)
+      // Entrance Timeline: Precision Automotive Entrance
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       tl.fromTo('.hero-trust-tag', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 })
@@ -83,7 +78,7 @@ export const Hero: React.FC<HeroProps> = () => {
             
             <div className="hero-trust-tag inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/40 text-amber-300 text-xs font-semibold shadow-[0_0_15px_rgba(245,158,11,0.15)] backdrop-blur-md">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Rental Mobil Resmi Pekanbaru &bull; Siaga Antar Jemput SSK II</span>
+              <span>Rental Mobil Resmi Pekanbaru &bull; Siaga Antar Jemput Bandara SSK II</span>
             </div>
 
             <h1 className="hero-main-title font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.14]">
@@ -170,43 +165,28 @@ export const Hero: React.FC<HeroProps> = () => {
 
         </div>
 
-        {/* Integrated Floating Layered Booking Bar */}
+        {/* Integrated Floating Layered Booking Bar (100% All-In Driver Package) */}
         <div className="hero-booking-bar bg-slate-900/95 backdrop-blur-xl rounded-2xl p-4 sm:p-5 text-white border border-slate-700/90 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(245,158,11,0.08)] -mb-8 sm:-mb-12 relative z-20">
           
-          {/* Top Toggle: Service Type Tabs */}
-          <div className="flex items-center gap-2 mb-4">
-            <button
-              type="button"
-              onClick={() => setServiceType('lepas-kunci')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                serviceType === 'lepas-kunci'
-                  ? 'bg-amber-500 text-slate-950 font-extrabold shadow-md'
-                  : 'bg-slate-800 text-slate-300 hover:text-white'
-              }`}
-            >
-              Lepas Kunci (Privasi 24 Jam)
-            </button>
-            <button
-              type="button"
-              onClick={() => setServiceType('dengan-supir')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                serviceType === 'dengan-supir'
-                  ? 'bg-amber-500 text-slate-950 font-extrabold shadow-md'
-                  : 'bg-slate-800 text-slate-300 hover:text-white'
-              }`}
-            >
-              Paket All-In 12 Jam (Dengan Supir + BBM)
-            </button>
+          {/* Top Banner: Single High-Value Package Mode */}
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-800">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold">
+              <UserCheck className="w-4 h-4 text-amber-400" />
+              <span>Paket All-In 12 Jam (Mobil + Supir Profesional + BBM)</span>
+            </div>
+            <span className="text-xs text-slate-400">
+              *Tarif berlaku khusus rute dalam kota Pekanbaru, di luar biaya parkir &amp; tol
+            </span>
           </div>
 
           {/* Form Bar Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
             
-            {/* Lokasi Jemput Pekanbaru */}
-            <div className="md:col-span-5 bg-slate-800/90 rounded-xl p-3 border border-slate-700">
+            {/* Lokasi Jemput Pekanbaru & Sekitarnya */}
+            <div className="md:col-span-5 bg-slate-950/90 rounded-xl p-3 border border-slate-700/80">
               <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1 flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                <span>Titik Penjemputan / Serah Terima di Riau</span>
+                <span>Titik Penjemputan di Pekanbaru / Kampar</span>
               </label>
               <select
                 value={location}
@@ -214,7 +194,10 @@ export const Hero: React.FC<HeroProps> = () => {
                 className="w-full bg-transparent text-white font-semibold text-xs sm:text-sm focus:outline-none cursor-pointer"
               >
                 <option value="Bandara Internasional Sultan Syarif Kasim II (SSK II)" className="bg-slate-900 text-white">
-                  Bandara Sultan Syarif Kasim II (SSK II) Pekanbaru (Gratis Antar)
+                  Bandara SSK II Pekanbaru (Gratis Antar Jemput)
+                </option>
+                <option value="Pandau Jaya / Siak Hulu (Area Kantor Nara)" className="bg-slate-900 text-white">
+                  Pandau Jaya &amp; Sekitarnya (Kec. Siak Hulu / Kampar)
                 </option>
                 <option value="Pusat Kota / Area Hotel Jl. Jend. Sudirman" className="bg-slate-900 text-white">
                   Hotel Area Jl. Jend. Sudirman (Pangeran, Premiere, Aryaduta, dll.)
@@ -223,19 +206,19 @@ export const Hero: React.FC<HeroProps> = () => {
                   Kawasan Bisnis Jl. Riau / Mall Ciputra / Novotel
                 </option>
                 <option value="Antar ke Rumah / Kantor Dalam Kota Pekanbaru" className="bg-slate-900 text-white">
-                  Antar Langsung ke Alamat Rumah / Kantor di Pekanbaru
+                  Alamat Rumah / Kantor Dalam Kota Pekanbaru
                 </option>
                 <option value="Drop-Off Perjalanan Luar Kota (Siak, Dumai, Duri, Kampar)" className="bg-slate-900 text-white">
-                  Drop Luar Kota Riau (Siak, Dumai, Duri, Bangkinang)
+                  Rute Perjalanan Lintas Riau (Siak, Dumai, Duri, Bangkinang)
                 </option>
               </select>
             </div>
 
             {/* Tanggal Sewa */}
-            <div className="md:col-span-4 bg-slate-800/90 rounded-xl p-3 border border-slate-700">
+            <div className="md:col-span-4 bg-slate-950/90 rounded-xl p-3 border border-slate-700/80">
               <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-amber-400" />
-                <span>Tanggal Rencana Sewa</span>
+                <span>Tanggal Rencana Pemakaian</span>
               </label>
               <input
                 type="date"
@@ -250,9 +233,9 @@ export const Hero: React.FC<HeroProps> = () => {
               <button
                 type="button"
                 onClick={handleSearchClick}
-                className="w-full h-full min-h-[58px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-display font-bold text-sm transition-all shadow-lg shadow-red-950/50 active:scale-98 cursor-pointer border border-red-500/40"
+                className="w-full h-full min-h-[58px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-display font-bold text-sm transition-all shadow-lg shadow-red-950/60 active:scale-98 cursor-pointer border border-red-500/40"
               >
-                <span>Lihat Katalog Armada</span>
+                <span>Lihat Katalog &amp; Harga</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
             </div>

@@ -10,6 +10,10 @@ export function formatCurrencyIDR(amount: number): string {
   }).format(amount);
 }
 
+export function formatIDR(amount: number): string {
+  return `Rp ${amount.toLocaleString('id-ID')}`;
+}
+
 /**
  * Format date string to localized Indonesian human readable format
  */

@@ -6,7 +6,6 @@ import { FleetShowcase } from './components/FleetShowcase';
 import { CarDetailModal } from './components/CarDetailModal';
 import { Services } from './components/Services';
 import { RentalRequirements } from './components/RentalRequirements';
-import { QualityAssurance } from './components/QualityAssurance';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { MobileStickyDock } from './components/MobileStickyDock';
 import { Footer } from './components/Footer';
@@ -63,7 +62,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-emerald-600 selection:text-white">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-amber-500 selection:text-slate-950">
       {/* Top Navigation */}
       <Navbar />
 
@@ -71,7 +70,7 @@ export function App() {
         {/* Hero Section */}
         <Hero />
 
-        {/* Fleet & Filter Section with Spacing for Floating Booking Bar */}
+        {/* Fleet & Filter Section with Spacing */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 pt-16 sm:pt-20">
           <QuickFilter
             filters={filters}
@@ -86,14 +85,11 @@ export function App() {
           />
         </div>
 
-        {/* Service Packages */}
+        {/* Service Packages (Focused All-In & Rute Riau) */}
         <Services />
 
-        {/* Requirements & 4-Step Process */}
+        {/* Requirements & Jaminan Keamanan Data */}
         <RentalRequirements />
-
-        {/* Quality Assurance & Guarantees (Anti-slop R-18 & R-36 compliant) */}
-        <QualityAssurance />
       </main>
 
       {/* Corporate Footer */}
@@ -105,7 +101,7 @@ export function App() {
       {/* Mobile Sticky Bottom Quick-Action Dock */}
       <MobileStickyDock totalVehicles={filteredVehicles.length} />
 
-      {/* Modal Dialog for Car Detail & Price Estimator */}
+      {/* Modal Dialog for Car Detail */}
       <CarDetailModal
         vehicle={selectedVehicle}
         onClose={() => setSelectedVehicle(null)}

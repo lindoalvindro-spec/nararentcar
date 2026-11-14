@@ -1,9 +1,10 @@
 import { COMPANY_CONFIG } from '../config/rental';
 import { Vehicle } from '../types/rental';
+import { formatIDR } from './formatters';
 
 export interface BookingMessageParams {
   vehicle: Vehicle;
-  serviceType?: 'lepas-kunci' | 'all-in-12jam' | 'dengan-supir';
+  serviceType?: string;
   startDate?: string;
   notes?: string;
 }
@@ -12,32 +13,26 @@ export interface BookingMessageParams {
  * Generate a WhatsApp click-to-chat URL tailored for Nara Rent Car Pekanbaru
  */
 export function buildWhatsAppBookingUrl(params: BookingMessageParams): string {
-  const { vehicle, serviceType, startDate, notes } = params;
+  const { vehicle, startDate, notes } = params;
   
-  const packageLabel = serviceType === 'all-in-12jam' 
-    ? 'Paket All-In 12 Jam (Mobil + Driver + BBM + Parkir)'
-    : serviceType === 'dengan-supir'
-    ? 'Dengan Supir'
-    : 'Lepas Kunci (24 Jam)';
+  const priceFormatted = formatIDR(vehicle.pricePer12Hours);
 
-  let message = `Halo Admin Nara Rent Car Pekanbaru, saya ingin reservasi/tanya tarif untuk unit ${vehicle.name}.`;
+  let message = `Halo Admin Nara Rent Car Pekanbaru, saya ingin reservasi unit *${vehicle.name}* (Paket All-In 12 Jam Dalam Kota: ${priceFormatted}).`;
   
   const extras: string[] = [];
-  if (serviceType) {
-    extras.push(`Skema: ${packageLabel}`);
-  }
+  extras.push('Include: Mobil + Supir + BBM');
   if (startDate) {
     extras.push(`Tanggal: ${startDate}`);
   }
   if (notes && notes.trim() !== '') {
-    extras.push(`Catatan: ${notes.trim()}`);
+    extras.push(`Catatan/Lokasi Jemput: ${notes.trim()}`);
   }
 
   if (extras.length > 0) {
-    message += ` (${extras.join(', ')})`;
+    message += `\nDetail: ${extras.join(' | ')}`;
   }
 
-  message += '. Boleh info ketersediaan unit dan penawaran terbaiknya? Terima kasih!';
+  message += '\n\nBoleh konfirmasi ketersediaan unit untuk jadwal saya? Terima kasih!';
 
   return `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }

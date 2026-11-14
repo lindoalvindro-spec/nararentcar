@@ -1,4 +1,4 @@
-export type CarCategory = 'all' | 'city-car' | 'mpv' | 'suv' | 'luxury' | 'minibus';
+export type CarCategory = 'all' | 'city-car' | 'mpv' | 'suv' | 'luxury' | 'minibus' | 'commercial';
 
 export type TransmissionType = 'all' | 'automatic' | 'manual';
 
@@ -13,8 +13,9 @@ export interface Vehicle {
   luggage: number;
   fuelType: 'Bensin' | 'Diesel' | 'Hybrid';
   engineCapacity: string;
-  priceWithoutDriver: number; // IDR per day
-  priceWithDriver: number; // IDR per day
+  pricePer12Hours: number; // IDR per 12 Jam All-In Dalam Kota (Mobil + Supir + BBM)
+  priceWithoutDriver?: number;
+  priceWithDriver?: number;
   rating: number; // 1-5
   reviewCount: number;
   featured: boolean;

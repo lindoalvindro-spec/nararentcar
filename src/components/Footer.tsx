@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
                 height={65}
                 className="h-12 w-auto object-contain drop-shadow-md"
               />
-              <div className="border-l border-slate-700 pl-3">
+              <div className="border-l border-slate-800 pl-3">
                 <span className="text-xl font-extrabold tracking-tight text-white font-display block">
                   {COMPANY_CONFIG.name}
                 </span>
@@ -31,12 +31,12 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-slate-400 leading-relaxed max-w-sm text-xs sm:text-sm">
-              Penyedia jasa rental mobil terpercaya di Pekanbaru dan seluruh wilayah Riau. Melayani perjalanan dinas instansi/BUMN, tamu korporat, wisata keluarga, serta layanan antar-jemput gratis di Bandara Sultan Syarif Kasim II (SSK II).
+              Penyedia jasa rental mobil dengan supir profesional terpercaya di Pekanbaru dan seluruh wilayah Riau. Melayani perjalanan dinas instansi/BUMN, tamu korporat, wisata keluarga, serta penjemputan siaga di Bandara Sultan Syarif Kasim II (SSK II).
             </p>
 
             <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold pt-1">
               <ShieldCheck className="w-4 h-4 text-amber-400" />
-              <span>Unit Tahun Muda (2022-2024) &bull; STNK Asli & Terawat Bengkel Resmi</span>
+              <span>Unit Tahun Muda (2022-2024) &bull; Supir Santun &amp; Terawat Bengkel Resmi</span>
             </div>
           </div>
 
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4 space-y-3">
             <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2 font-display flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Alamat & Kontak Operasional</span>
+              <span>Alamat &amp; Kontak Operasional</span>
             </h4>
             <div className="space-y-2.5">
               <div className="flex items-start gap-3">
@@ -73,14 +73,23 @@ export const Footer: React.FC = () => {
           {/* Quick Nav & Fleet Tags */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-2 font-display">
-              Armada Favorit di Pekanbaru
+              8 Armada Pilihan Pekanbaru
             </h4>
             <div className="flex flex-wrap gap-1.5">
-              {['Toyota Innova Zenix', 'All New Avanza', 'Mitsubishi Xpander', 'Toyota Fortuner GR', 'Toyota Alphard VIP', 'HiAce Wisata'].map((car) => (
+              {[
+                'New Avanza',
+                'Innova Reborn',
+                'Innova Zenix',
+                'Fortuner GR',
+                'Pajero Sport',
+                'Hiace',
+                'Triton DC',
+                'Alphard VIP',
+              ].map((car) => (
                 <a
                   key={car}
                   href="#armada"
-                  className="px-2.5 py-1 rounded-md bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-300 border border-slate-700 text-xs transition-colors"
+                  className="px-2.5 py-1 rounded-md bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-300 border border-slate-800 text-xs transition-colors"
                 >
                   {car}
                 </a>
@@ -106,7 +115,7 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} {COMPANY_CONFIG.name} Pekanbaru. Seluruh hak cipta dilindungi.
           </p>
           <p>
-            Your Trusted Car Rental Partner &bull; Kota Pekanbaru, Riau
+            Your Trusted Car Rental Partner &bull; Pandau Jaya, Pekanbaru / Kampar, Riau
           </p>
         </div>
 

@@ -9,12 +9,11 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { label: 'Pilihan Armada', href: '#armada' },
     { label: 'Paket Layanan', href: '#layanan' },
-    { label: 'Syarat Sewa', href: '#syarat' },
-    { label: 'Standar Mutu', href: '#mutu' },
+    { label: 'Syarat & Keamanan Data', href: '#syarat' },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full transition-all shadow-sm">
+    <header className="sticky top-0 z-40 w-full transition-all shadow-md">
       {/* Main Navbar */}
       <div className="bg-slate-950/95 backdrop-blur-md border-b border-slate-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +32,7 @@ export const Navbar: React.FC = () => {
                 height={55}
                 className="h-11 sm:h-12 w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform"
               />
-              <div className="border-l border-slate-700 pl-3">
+              <div className="border-l border-slate-800 pl-3">
                 <span className="text-lg sm:text-xl font-extrabold tracking-tight text-white block leading-tight font-display">
                   NARA RENT CAR
                 </span>
@@ -62,7 +61,7 @@ export const Navbar: React.FC = () => {
                 href={buildWhatsAppSupportUrl('Konsultasi Sewa Mobil Pekanbaru')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold font-display text-xs sm:text-sm transition-all shadow-md shadow-red-900/30 border border-red-600/40"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold font-display text-xs sm:text-sm transition-all shadow-md shadow-red-950/50 border border-red-500/40 cursor-pointer"
                 aria-label="Hubungi Customer Service via WhatsApp"
               >
                 <Phone className="w-4 h-4 stroke-[2.2]" />
@@ -75,7 +74,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 transition-colors"
+                className="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 transition-colors cursor-pointer"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Buka menu navigasi"
               >
@@ -88,7 +87,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Menu Panel */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-slate-800 bg-slate-900 px-4 pt-3 pb-6 space-y-2 shadow-xl">
+          <div className="md:hidden border-b border-slate-800 bg-slate-900 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -104,7 +103,7 @@ export const Navbar: React.FC = () => {
                 href={buildWhatsAppSupportUrl('Konsultasi Sewa Mobil Pekanbaru')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-700 hover:bg-red-600 text-white font-bold font-display text-sm shadow-md"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-600 hover:to-red-700 text-white font-bold font-display text-sm shadow-md"
               >
                 <Phone className="w-4 h-4 stroke-[2.2]" />
                 <span>Hubungi CS via WhatsApp</span>

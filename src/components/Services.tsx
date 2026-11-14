@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Key, UserCheck, Check, ArrowRight, Sparkles } from 'lucide-react';
+import { UserCheck, Check, ArrowRight, Sparkles, Plane, Map } from 'lucide-react';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -39,64 +39,64 @@ export const Services: React.FC = () => {
     },
     {
       num: '02',
-      title: 'Harga Bersahabat & Fleksibel',
-      desc: 'Penawaran tarif sewa bersaing di Pekanbaru tanpa biaya tersembunyi. Silakan konsultasi dan negosiasikan langsung via WhatsApp sesuai durasi atau rute pemakaian Anda.',
-      badge: 'Nego via WhatsApp',
+      title: 'Harga Bersahabat & Transparan',
+      desc: 'Tarif sewa All-In 12 Jam yang tertera sudah termasuk Mobil, Supir, dan BBM dalam kota. Informasi biaya jelas di awal tanpa pungutan tersembunyi.',
+      badge: 'All-In Mobil + Supir + BBM',
     },
     {
       num: '03',
-      title: 'Driver Handal & Berpengalaman',
-      desc: 'Pengemudi santun, rapi, dan tidak merokok saat bertugas. Menguasai jalur protokol Kota Pekanbaru, pusat instansi BUMN/Pemerintahan, hingga jalur lintas Riau (Siak, Dumai, Kampar).',
+      title: 'Driver Handal & Santun',
+      desc: 'Pengemudi santun, rapi, dan tidak merokok saat bertugas. Menguasai jalur protokol Kota Pekanbaru, pusat instansi BUMN/Pemerintahan, hingga jalur lintas Riau.',
       badge: 'Sopir Santun & Hapal Rute',
     },
     {
       num: '04',
-      title: 'Layanan Antar-Jemput Gratis',
-      desc: 'Fasilitas penjemputan dan pengantaran unit tepat waktu di Bandara Internasional Sultan Syarif Kasim II (SSK II), hotel ternama, maupun stasiun di Pekanbaru.',
-      badge: 'Bebas Ongkir Bandara SSK II',
+      title: 'Siaga Penjemputan Tepat Waktu',
+      desc: 'Fasilitas penjemputan dan pengantaran tepat waktu di Bandara Sultan Syarif Kasim II (SSK II), hotel ternama, atau area domisili Anda di Pekanbaru.',
+      badge: 'Siaga Bandara SSK II',
     },
   ];
 
   return (
-    <section ref={containerRef} id="layanan" className="py-20 bg-white border-b border-slate-200">
+    <section ref={containerRef} id="layanan" className="py-20 bg-slate-950 border-b border-slate-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header: Left-Aligned Editorial Style */}
         <div className="service-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-50 text-amber-900 border border-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 text-amber-300 border border-amber-500/30 text-xs font-bold uppercase tracking-wider mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Standar Pelayanan Nara Rent Car Pekanbaru</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-display tracking-tight">
-              4 Keunggulan Layanan Kami
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-display tracking-tight">
+              Keunggulan Layanan Kami
             </h2>
           </div>
-          <p className="text-slate-600 text-sm sm:text-base max-w-xl">
+          <p className="text-slate-400 text-sm sm:text-base max-w-xl">
             Diadaptasi untuk memenuhi ekspektasi tertinggi perjalanan dinas instansi, tamu korporat, dan keluarga yang membutuhkan kenyamanan paripurna di Pekanbaru.
           </p>
         </div>
 
-        {/* 4 Pillars Grid (Inspired by juniorrentcarpekanbaru.com deep copy) */}
+        {/* 4 Pillars Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {pillars.map((pillar) => (
             <div
               key={pillar.num}
-              className="pillar-card rounded-2xl bg-slate-50 border border-slate-200/90 p-6 flex flex-col justify-between hover:border-amber-400 hover:shadow-md transition-all group"
+              className="pillar-card rounded-2xl bg-slate-900/90 border border-slate-800 p-6 flex flex-col justify-between hover:border-amber-500/50 hover:shadow-xl transition-all group backdrop-blur-md"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-black font-display text-slate-300 group-hover:text-amber-500 transition-colors">
+                  <span className="text-2xl font-black font-display text-slate-700 group-hover:text-amber-400 transition-colors">
                     {pillar.num}
                   </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white text-slate-700 border border-slate-200 shadow-xs">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800 shadow-xs">
                     {pillar.badge}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold font-display text-slate-900 mb-2">
+                <h3 className="text-lg font-bold font-display text-white mb-2 group-hover:text-amber-300 transition-colors">
                   {pillar.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                   {pillar.desc}
                 </p>
               </div>
@@ -104,126 +104,173 @@ export const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Core Services: Asymmetric Two-Column Comparison */}
+        {/* Core Services: Focused Premium All-In Services */}
         <div className="service-header mb-8">
-          <h3 className="text-xl sm:text-2xl font-bold font-display text-slate-900 mb-2">
-            Pilihan Skema Sewa Armada
+          <h3 className="text-xl sm:text-2xl font-bold font-display text-white mb-2">
+            Layanan Utama &amp; Mobilitas Riau
           </h3>
-          <p className="text-xs sm:text-sm text-slate-600">
-            Tersedia skema all-in bebas repot dengan pengemudi handal, atau lepas kunci untuk privasi penuh keluarga Anda.
+          <p className="text-xs sm:text-sm text-slate-400">
+            Fokus penuh pada kenyamanan perjalanan dengan pengemudi profesional yang santun, amanah, dan menguasai rute.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           
           {/* Card 1: Paket All-In 12 Jam (Dengan Supir) */}
-          <div className="service-card-main rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 text-white border-2 border-red-700/60 p-7 sm:p-8 flex flex-col justify-between relative shadow-xl">
+          <div className="service-card-main rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white border-2 border-red-700/60 p-7 flex flex-col justify-between relative shadow-2xl">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 rounded-xl bg-red-700 text-white flex items-center justify-center shadow-md">
                   <UserCheck className="w-6 h-6 stroke-[2]" />
                 </div>
-                <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-900/80 text-amber-300 border border-red-700">
-                  Paling Banyak Dipilih Tamu Dinas
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-950 text-amber-300 border border-red-800">
+                  Favorit Tamu Dinas
                 </span>
               </div>
 
-              <h4 className="text-xl sm:text-2xl font-extrabold font-display text-white mb-2">
-                Paket All-In 12 Jam (Mobil + Supir + BBM + Parkir)
+              <h4 className="text-xl font-extrabold font-display text-white mb-2">
+                Paket All-In 12 Jam Dalam Kota
               </h4>
-              <p className="text-sm text-slate-300 mb-6 leading-relaxed">
-                Pilihan bebas lelah untuk agenda bisnis, rapat instansi pemerintah, atau silaturahmi keluarga di Pekanbaru. Pengemudi kami siap melayani dengan santun dan profesional.
+              <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+                Pilihan bebas repot untuk agenda bisnis, rapat instansi pemerintah, atau silaturahmi keluarga di Pekanbaru.
               </p>
 
               <div className="space-y-3 pt-4 border-t border-slate-800">
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
                   <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span><strong>Mobil Bersih & Supir Handal</strong> berpengalaman dan berpakaian rapi.</span>
+                  <span><strong>Mobil Bersih &amp; Supir Santun</strong> berpakaian rapi dan profesional.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
                   <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span><strong>Termasuk BBM & Parkir</strong> dalam kota Pekanbaru selama 12 jam pemakaian.</span>
+                  <span><strong>Termasuk Mobil + Supir + BBM</strong> selama 12 jam pemakaian dalam kota.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
                   <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span><strong>Penjemputan Tepat Waktu</strong> di Bandara SSK II atau hotel penginapan Anda.</span>
+                  <span><strong>Penjemputan Tepat Waktu</strong> di Bandara SSK II, hotel, atau alamat Anda.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
                   <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span><strong>Kwitansi Resmi & Invoice</strong> tersedia lengkap untuk kebutuhan klaim kantor.</span>
+                  <span><strong>Kwitansi &amp; Invoice Resmi</strong> untuk kebutuhan reimbursement kantor.</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                <span className="text-[11px] text-slate-400 block">Konsultasi Paket All-In</span>
-                <span className="text-sm font-bold text-amber-400">Nego Tarif via WhatsApp</span>
-              </div>
+            <div className="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between gap-4">
+              <span className="text-xs font-bold text-amber-400">Tarif Pasti Tertera</span>
               <a
                 href={buildWhatsAppSupportUrl('Paket All-In 12 Jam dengan Supir Pekanbaru')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-red-700 hover:bg-red-600 text-white font-bold font-display text-xs sm:text-sm transition-all shadow-md"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-red-700 hover:bg-red-600 text-white font-bold font-display text-xs transition-all shadow-md cursor-pointer"
               >
-                <span>Tanya Paket All-In</span>
-                <ArrowRight className="w-4 h-4 stroke-[2.2]" />
+                <span>Pesan Sekarang</span>
+                <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
               </a>
             </div>
           </div>
 
-          {/* Card 2: Sewa Lepas Kunci */}
-          <div className="service-card-main rounded-2xl bg-slate-50 border-2 border-slate-300 hover:border-amber-500 transition-colors p-7 sm:p-8 flex flex-col justify-between relative shadow-sm">
+          {/* Card 2: Antar-Jemput Bandara SSK II & Hotel */}
+          <div className="service-card-main rounded-2xl bg-slate-900/90 border border-slate-800 p-7 flex flex-col justify-between relative shadow-xl hover:border-amber-500/40 transition-colors">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-sm">
-                  <Key className="w-6 h-6 stroke-[2]" />
+                <div className="w-12 h-12 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center shadow-sm border border-slate-700">
+                  <Plane className="w-6 h-6 stroke-[2]" />
                 </div>
-                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-200 text-slate-800 border border-slate-300">
-                  Privasi Mandiri 24 Jam
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-950 text-slate-300 border border-slate-800">
+                  Siaga 24 Jam
                 </span>
               </div>
 
-              <h4 className="text-xl sm:text-2xl font-bold font-display text-slate-900 mb-2">
-                Sewa Mobil Lepas Kunci (Self Drive)
+              <h4 className="text-xl font-bold font-display text-white mb-2">
+                Antar-Jemput Bandara SSK II
               </h4>
-              <p className="text-sm text-slate-600 mb-6 leading-relaxed">
-                Kendali penuh agenda perjalanan di tangan Anda. Nikmati fleksibilitas rute dan keleluasaan waktu bersama keluarga dengan unit steril, wangi, dan bebas asap rokok.
+              <p className="text-xs sm:text-sm text-slate-400 mb-6 leading-relaxed">
+                Penjemputan kedatangan pesawat tepat waktu tanpa perlu menunggu taksi antre di Bandara Sultan Syarif Kasim II Pekanbaru.
               </p>
 
-              <div className="space-y-3 pt-4 border-t border-slate-200">
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span><strong>Durasi 24 Jam Penuh</strong> per hari kalender sewa.</span>
+              <div className="space-y-3 pt-4 border-t border-slate-800">
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Pemantauan Jadwal Flight</strong> berkala mencegah keterlambatan jemput.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span><strong>Bebas Kilometer</strong> perjalanan jelajah dalam provinsi Riau.</span>
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Supir Siaga dengan Name Sign</strong> di area kedatangan terminal bandara.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span><strong>Antar-Jemput Unit</strong> gratis ke Bandara SSK II atau lokasi rumah/hotel.</span>
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Bantuan Angkat Bagasi</strong> langsung masuk ke dalam bagasi mobil.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span><strong>Deposit Jaminan Transparan</strong> dikembalikan utuh 100% dalam 1x24 jam.</span>
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Antar Langsung ke Hotel</strong> atau destinasi dinas di Pekanbaru.</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                <span className="text-[11px] text-slate-500 block">Konsultasi Lepas Kunci</span>
-                <span className="text-sm font-bold text-slate-900">Nego Tarif via WhatsApp</span>
-              </div>
+            <div className="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between gap-4">
+              <span className="text-xs text-slate-400">Siaga Setiap Hari</span>
               <a
-                href={buildWhatsAppSupportUrl('Sewa Lepas Kunci Pekanbaru')}
+                href={buildWhatsAppSupportUrl('Antar-Jemput Bandara SSK II Pekanbaru')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold font-display text-xs sm:text-sm transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold font-display text-xs transition-colors cursor-pointer border border-slate-700"
               >
-                <span>Tanya Lepas Kunci</span>
-                <ArrowRight className="w-4 h-4 stroke-[2.2]" />
+                <span>Tanya Jadwal</span>
+                <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
+              </a>
+            </div>
+          </div>
+
+          {/* Card 3: Perjalanan Dinas Luar Kota & Rute Lintas Riau */}
+          <div className="service-card-main rounded-2xl bg-slate-900/90 border border-slate-800 p-7 flex flex-col justify-between relative shadow-xl hover:border-amber-500/40 transition-colors">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center shadow-sm border border-slate-700">
+                  <Map className="w-6 h-6 stroke-[2]" />
+                </div>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-950 text-slate-300 border border-slate-800">
+                  Lintas Provinsi Riau
+                </span>
+              </div>
+
+              <h4 className="text-xl font-bold font-display text-white mb-2">
+                Rute Luar Kota &amp; Lintas Riau
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-400 mb-6 leading-relaxed">
+                Melayani perjalanan dinas luar kota dan kunjungan lapangan ke Siak, Dumai, Duri, Bangkinang Kampar, hingga Pelalawan.
+              </p>
+
+              <div className="space-y-3 pt-4 border-t border-slate-800">
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Supir Hapal Rute Jalan Tol</strong> Pekanbaru-Dumai &amp; Pekanbaru-Bangkinang.</span>
+                </div>
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Armada Tangguh (Fortuner, Pajero, Triton)</strong> untuk area perkebunan/migas.</span>
+                </div>
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Hiace 14 Kursi</strong> untuk rombongan wisata budaya Istana Siak.</span>
+                </div>
+                <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span><strong>Kondisi Mesin Selalu Diinspeksi</strong> sebelum keberangkatan jauh.</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between gap-4">
+              <span className="text-xs text-slate-400">Konsultasi Rute</span>
+              <a
+                href={buildWhatsAppSupportUrl('Rute Perjalanan Luar Kota Riau')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold font-display text-xs transition-colors cursor-pointer border border-slate-700"
+              >
+                <span>Konsultasi Rute</span>
+                <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
               </a>
             </div>
           </div>
