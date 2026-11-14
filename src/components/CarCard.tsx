@@ -22,7 +22,10 @@ export const CarCard: React.FC<CarCardProps> = ({
       
       <div>
         {/* Studio Stage Header with Corner Ribbon Badge */}
-        <div className="relative aspect-[16/10] bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950/80 p-4 flex flex-col justify-between overflow-hidden border-b border-slate-800/80">
+        <div className="relative aspect-[16/10] bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 p-4 flex flex-col justify-between overflow-hidden border-b border-slate-800/80">
+          
+          {/* Subtle Showroom Spotlight behind vehicle */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
           
           {/* Top Video-Inspired Ribbon & Status Row */}
           <div className="flex items-center justify-between z-10">
