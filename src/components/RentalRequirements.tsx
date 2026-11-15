@@ -3,7 +3,8 @@ import {
   ArrowRight, 
   Lock, 
   ShieldCheck,
-  Sparkles
+  Sparkles,
+  Info
 } from 'lucide-react';
 import { buildWhatsAppSupportUrl } from '../utils/whatsapp';
 import gsap from 'gsap';
@@ -33,10 +34,6 @@ export const RentalRequirements: React.FC = () => {
     {
       title: 'Kerahasiaan Agenda Perjalanan',
       desc: 'Rute kunjungan pejabat, instansi dinas, dan keluarga dijamin aman serta tidak dipublikasikan tanpa izin.',
-    },
-    {
-      title: 'Bebas Uang Jaminan (Deposit)',
-      desc: 'Seluruh paket sewa dengan supir tidak membebankan uang deposit yang memberatkan.',
     },
     {
       title: 'Arsip Terenkripsi',
@@ -71,8 +68,8 @@ export const RentalRequirements: React.FC = () => {
             </p>
           </div>
 
-          {/* 4 Security Pillars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-4 border-t border-slate-800/90 relative z-10">
+          {/* 3 Security Pillars Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pt-4 border-t border-slate-800/90 relative z-10">
             {securityPoints.map((point, idx) => (
               <div 
                 key={idx}
@@ -93,8 +90,23 @@ export const RentalRequirements: React.FC = () => {
             ))}
           </div>
 
+          {/* Ketentuan Sewa Jangka Pendek & Panjang */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/90 border border-amber-500/40 relative z-10 flex flex-col sm:flex-row items-center sm:items-start gap-3.5 text-center sm:text-left shadow-lg">
+            <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+              <Info className="w-4 h-4 stroke-[2.2]" />
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                Rental Mobil jangka pendek harus dengan supir tidak bisa lepas kunci, sedangkan untuk Sewa Mobil jangka panjang kami bisa menyediakan mobil lepas kunci dengan Syarat dan Kondisi berlaku.
+              </p>
+              <p className="text-xs sm:text-sm text-amber-300 font-semibold">
+                Jika anda memiliki pertanyaan, jangan ragu untuk menghubungi kami!
+              </p>
+            </div>
+          </div>
+
           {/* Bottom Call to Action */}
-          <div className="pt-6 border-t border-slate-800/90 flex flex-col items-center justify-center space-y-3 relative z-10">
+          <div className="pt-2 flex flex-col items-center justify-center space-y-3 relative z-10">
             <a
               href={buildWhatsAppSupportUrl('Konsultasi & Reservasi Mobil Pekanbaru')}
               target="_blank"
