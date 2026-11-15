@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
             </h1>
 
             <p className="hero-subtitle text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-              Solusi mobilitas andalan instansi dinas, tamu BUMN, dan keluarga di Pekanbaru. Pilihan armada prima dengan perawatan bengkel resmi, supir profesional yang santun, serta gratis antar jemput di Bandara Sultan Syarif Kasim II.
+              Solusi mobilitas andalan instansi dinas, tamu BUMN, dan keluarga di Pekanbaru. Pilihan armada prima dengan perawatan bengkel resmi serta supir profesional yang santun.
             </p>
 
           </div>
@@ -179,7 +179,7 @@ export const Hero: React.FC = () => {
                 className="w-full bg-transparent text-white font-semibold text-xs sm:text-sm focus:outline-none cursor-pointer"
               >
                 <option value="Bandara Internasional Sultan Syarif Kasim II (SSK II)" className="bg-slate-900 text-white">
-                  Bandara SSK II Pekanbaru (Gratis Antar Jemput)
+                  Bandara SSK II Pekanbaru
                 </option>
                 <option value="Pandau Jaya / Siak Hulu (Area Kantor Nara)" className="bg-slate-900 text-white">
                   Pandau Jaya &amp; Sekitarnya (Kec. Siak Hulu / Kampar)
