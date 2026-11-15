@@ -8,7 +8,7 @@ export const COMPANY_CONFIG: RentalCompanyConfig = {
   email: 'Bellaabeliaa095@gmail.com',
   address: 'Pandau Jaya, Kec. Siak Hulu',
   city: 'Pekanbaru / Kampar, Riau',
-  operatingHours: '24 Jam Setiap Hari (Siaga Antar Jemput Bandara SSK II)',
+  operatingHours: '24 Jam Setiap Hari',
   instagram: 'https://www.instagram.com/rentalmobilpku_nararentcar?mdxt=NjQ5NWo0bThxNHlm',
   facebook: 'https://www.facebook.com/share/1ByWFswLGy/',
 };
