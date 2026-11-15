@@ -33,3 +33,9 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
+# Scratch files and media
+junior_rentcar*.html
+video_frames/
+WhatsApp*
+*.py
